@@ -2,7 +2,7 @@
 ## Farah Dhiya Ramadhina/PBP B/2206082934 ##
 
 ## A. Implementasi Checklist *step-by-step* ##
-### 1. Membuat sebuah proyek Django baru. ###
+### Membuat sebuah proyek Django baru. ###
 * Membuat direktori baru dengan nama `quidditch_supplies` pada folder PBP Farah di Desktop, yang saya gunakan untuk menyimpan semua file PBP saya pada semester ini.
 * Membuat *virtual environment* pada terminal direktori yang baru saya buat dengan menjalankan prompt berikut : `python -m venv env`
 * Mengaktifkan virtual environment dengan prompt berikut : `source env/bin/activate` . Virtual environment akan aktif dan dapat terlihat dengan adanya `(env)` di awal baris input terminal
@@ -15,14 +15,14 @@
 * Buka `http://localhost:8000/` pada browser untuk memastikan bahwa aplikasi Django saya berhasil dibuat (ditandai dengan adanya animasi roket dan teks yang bertuliskan installation succesful pada halaman yang dibuka)
 * Aplikasi Django selesai dibuat. Tekan `Control+C` pada shell untuk menghentikan server, dan menonaktifkan virtual environment dengan prompt : `deactivate`
 
-### 2. Membuat aplikasi dengan nama 'main' pada proyek tersebut. ###
+### Membuat aplikasi dengan nama 'main' pada proyek tersebut. ###
 * Buka terminal pada direktori utama `quidditch_supplies`, lalu aktifkan virtual environment yang telah dibuat sebelumnya dengan menjalankan prompt berikut : `source env/bin/activate`
 * Jalankan prompt berikut untuk membuat aplikasi baru bernama main : `python manage.py startapp main` 
 * Buka berkas `settings.py` pada direktori proyek `quidditch_supplies`, lalu tambahkan `main` pada daftar aplikasi yg ada pada variabel `INSTALLED_APPS` untuk mendaftarkan aplikasi `main` ke dalam proyek.
 
-### 3. Melakukan routing pada proyek agar dapat menjalankan aplikasi main. ###
+### Melakukan routing pada proyek agar dapat menjalankan aplikasi main. ###
 
-### 4. Membuat model pada aplikasi 'main' dengan nama 'Item' dan memiliki atribut wajib sebagai berikut : 
+### Membuat model pada aplikasi 'main' dengan nama 'Item' dan memiliki atribut wajib sebagai berikut : 
 `name` sebagai nama item dengan tipe `CharField`.
 `amount' sebagai jumlah item dengan tipe `IntegerField`.
 `description' sebagai deskripsi item dengan tipe `TextField`.
@@ -36,7 +36,7 @@ class Product(models.Model):
     description = models.TextField()
     category = models.TextField()`
 
-### 5. Membuat sebuah fungsi pada 'views.py' untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas kamu. ###
+### Membuat sebuah fungsi pada 'views.py' untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas kamu. ###
 * Buka berkas `views.py` pada berkas aplikasi `main`, lalu impor modul yg dibutuhkan untuk membuat fungsi `show_main` seperti berikut : 
 `from django.shortcuts import render`
 * Tambahkan fungsi 'show_main' di bawah baris impor yang akan dikembalikan dalam template HTML yang menampilkan nama dan kelas saya seperti berikut : 
@@ -47,10 +47,10 @@ class Product(models.Model):
     }
     return render(request, "main.html", context)`
 
-### 6. Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py. ###
+### Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py. ###
 * 
 
-### 7. Melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet. ###
+### Melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet. ###
 * Buka Adaptable.io pada browser, login menggunakan GitHub, lalu tekan tombol `New App`.
 * Pilih `Connect an Existing Repository`, dan pilih repositori proyek `quidditch_supplies` yang telah saya buat sebagai basis aplikasi yang akan di-deploy. Pilih branch `main` sebagai *deployment branch*.
 * Pilih `Python App Template` sebagai *template deployment* dan `PostgreSQL` sebagai tipe basis data yang akan digunakan.
@@ -80,4 +80,22 @@ Virtual environment membuat proyek kita lebih mudah dipindahkan ke tempat lain a
 Kita sebenarnya bisa membuat aplikasi web berbasis Django tanpa menggunakan virtual environment, tetapi hal ini berisiko, karena tanpa virtual environment, paket Python akan diinstal secara global di komputer kita. Hal ini bisa menyebabkan masalah jika kita bekerja pada beberapa proyek yang menggunakan versi paket yang berbeda. Oleh karena itu, lebih baik menggunakan virtual environment dalam pengembangan Django dan Python agar proyek kita lebih rapi dan terhindar dari masalah.
 
 ## D. Jelaskan apakah itu MVC, MVT, MVVM dan perbedaan dari ketiganya. ##
-***
+MVC (Model-View-Controller), MVT (Model-View-Template), dan MVVM (Model-View-ViewModel) adalah cara berbeda untuk merancang dan memisahkan komponen dalam pengembangan perangkat lunak:
+
+1. **MVC (Model-View-Controller)**:
+   - **Model**: Menyiapkan, mengatur, memanipulasi, dan mengorganisasikan data yang ada di database.
+   - **View**: Menampilkan informasi kepada pengguna dalam bentuk *Graphical User Interface* (GUI).
+   - **Controller**: Menghubungkan serta mengatur model dan view agar dapat saling terhubung.
+
+
+2. **MVT (Model-View-Template)**:
+   - **Model**: Menghubungkan aplikasi dengan basis data dan mengatur interaksi dengan data tersebut.
+   - **View**: Mengatur tampilan dan mengambil data dari model untuk ditampilkan ke pengguna.
+   - **Template**: Merancang tampilan yang akan diisi dengan data dari model melalui view.
+
+3. **MVVM (Model-View-ViewModel)**:
+   - **Model**: Mengelola data.
+   - **View**: Menampilkan informasi.
+   - **ViewModel**: Menengahi antara Model dan View, menyiapkan data dan mengelola tindakan pengguna.
+
+Perbedaan utamanya: MVC menggunakan Controller sebagai perantara, MVT menggunakan Template untuk tampilan, dan MVVM memperkenalkan ViewModel untuk mengelola data dan tampilan. Pilihan tergantung pada preferensi dan kebutuhan dalam mengembangkan aplikasi.
