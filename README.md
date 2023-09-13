@@ -28,27 +28,30 @@
 `description' sebagai deskripsi item dengan tipe `TextField`.
 * Buka berkas `models.py` pada direktori aplikasi `main`
 * Isi berkas `models.py` dengan menambahkan atribut wajib dan pilihan sesuai yang kita inginkan seperti berikut : 
-`from django.db import models
+```ruby
+from django.db import models
 class Product(models.Model):
     name = models.CharField(max_length=255)
     amount = models.IntegerField()
     price = models.IntegerField()
     description = models.TextField()
-    category = models.TextField()`
+    category = models.TextField()
+```
 
 ### Membuat sebuah fungsi pada 'views.py' untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas kamu. ###
 * Buka berkas `views.py` pada berkas aplikasi `main`, lalu impor modul yg dibutuhkan untuk membuat fungsi `show_main` seperti berikut : 
 `from django.shortcuts import render`
 * Tambahkan fungsi 'show_main' di bawah baris impor yang akan dikembalikan dalam template HTML yang menampilkan nama dan kelas saya seperti berikut : 
-`def show_main(request):
+```ruby
+def show_main(request):
     context = {
         'name': 'Farah Dhiya Ramadhina',
         'class': 'PBP B'
     }
-    return render(request, "main.html", context)`
-
+    return render(request, "main.html", context)
+```
 ### Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py. ###
-* 
+
 
 ### Melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet. ###
 * Buka Adaptable.io pada browser, login menggunakan GitHub, lalu tekan tombol `New App`.
@@ -59,25 +62,13 @@ class Product(models.Model):
 
 
 ## B. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html. ##
-***
+(https://github.com/farahramadhina/quidditch_supplies/assets/124555865/c71d00be-0736-45ad-99f0-ee82abb27f7e)
 
 
 ## C. Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment? ##
-Virtual environment digunakan dalam membuat aplikasi web berbasis Django untuk menjaga kerapihan dan mengisolasi pengembangan perangkat lunak. 
+Virtual environment digunakan dalam membuat aplikasi web berbasis Django untuk menjaga kerapihan dan mengisolasi pengembangan perangkat lunak. Virtual environment memungkinkan kita untuk membuat lingkungan terisolasi di mana kita dapat menginstal dan mengelola dependencies secara independen untuk setiap proyek. Hal ini dapat mencegah konflik *compatibility issues* jika kita memiliki beberapa proyek yang berbagi dependencies yang sama dengan versi yang berbeda. Dengan virtual environment, kita dapat menggunakan pip (Python Package Manager) untuk dengan mudah menginstal, menghapus, dan mengelola paket Python yang diperlukan untuk proyek tertentu tanpa mempengaruhi paket-paket di luar lingkungan tersebut. 
 
-1. **Isolasi Paket dan Dependencies**
-Virtual environment memungkinkan kita untuk membuat lingkungan terisolasi di mana kita dapat menginstal dan mengelola dependencies secara independen untuk setiap proyek. Hal ini untuk mencegah konflik jika kita memiliki beberapa proyek yang berbagi dependencies yang sama dengan versi paket yang berbeda.
-
-2. **Mempermudah Pengelolaan Paket**
-Dengan virtual environment, kita dapat menggunakan pip (Python package manager) untuk dengan mudah menginstal, menghapus, dan mengelola paket Python yang diperlukan untuk proyek tertentu tanpa mempengaruhi paket-paket di luar lingkungan tersebut.
-
-3. **Menghindari Masalah Kompatibilitas**
-Dengan virtual environment, kita memastikan bahwa versi paket yang kita gunakan cocok satu sama lain, sehingga mengurangi kemungkinan terjadinya *compatibility issues*.
-
-4. **Kemudahan Berbagi**
-Virtual environment membuat proyek kita lebih mudah dipindahkan ke tempat lain atau dibagikan dengan tim tanpa perlu khawatir tentang masalah *dependencies*.
-
-Kita sebenarnya bisa membuat aplikasi web berbasis Django tanpa menggunakan virtual environment, tetapi hal ini berisiko, karena tanpa virtual environment, paket Python akan diinstal secara global di komputer kita. Hal ini bisa menyebabkan masalah jika kita bekerja pada beberapa proyek yang menggunakan versi paket yang berbeda. Oleh karena itu, lebih baik menggunakan virtual environment dalam pengembangan Django dan Python agar proyek kita lebih rapi dan terhindar dari masalah.
+Kita sebenarnya bisa membuat aplikasi web berbasis Django tanpa menggunakan virtual environment, tetapi hal ini berisiko. Tanpa virtual environment, paket Python akan diinstal secara global di komputer kita, yang bisa menyebabkan masalah jika kita bekerja pada beberapa proyek yang menggunakan versi paket yang berbeda. Oleh karena itu, lebih baik menggunakan virtual environment dalam pengembangan Django dan Python agar proyek kita lebih rapi dan terhindar dari masalah.
 
 ## D. Jelaskan apakah itu MVC, MVT, MVVM dan perbedaan dari ketiganya. ##
 MVC (Model-View-Controller), MVT (Model-View-Template), dan MVVM (Model-View-ViewModel) adalah cara berbeda untuk merancang dan memisahkan komponen dalam pengembangan perangkat lunak:
@@ -86,7 +77,6 @@ MVC (Model-View-Controller), MVT (Model-View-Template), dan MVVM (Model-View-Vie
    - **Model**: Menyiapkan, mengatur, memanipulasi, dan mengorganisasikan data yang ada di database.
    - **View**: Menampilkan informasi kepada pengguna dalam bentuk *Graphical User Interface* (GUI).
    - **Controller**: Menghubungkan serta mengatur model dan view agar dapat saling terhubung.
-
 
 2. **MVT (Model-View-Template)**:
    - **Model**: Menghubungkan aplikasi dengan basis data dan mengatur interaksi dengan data tersebut.
