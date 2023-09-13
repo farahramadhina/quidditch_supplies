@@ -21,6 +21,18 @@
 * Buka berkas `settings.py` pada direktori proyek `quidditch_supplies`, lalu tambahkan `main` pada daftar aplikasi yg ada pada variabel `INSTALLED_APPS` untuk mendaftarkan aplikasi `main` ke dalam proyek.
 
 ### Melakukan routing pada proyek agar dapat menjalankan aplikasi main. ###
+* Buka berkas `urls.py` di dalam direktori proyek `quidditch_supplies` , bukan yang ada di dalam direktori aplikasi `main`
+* Impor funhsi `include` dari `django.urls` .
+* Tambahkan rute URL seperti berikut untuk mengarahkan ke tampilan main dalam variabel `urlpatterns`
+```ruby
+urlpatterns = [
+    ...
+    path('main/', include('main.urls')),
+    ...
+]
+```
+* Jalankan proyek Django dengan prompt `python manage.py runserver`
+* Buka `http://localhost:8000/main/` di browser untuk melihat page yang sudah dibuat
 
 ### Membuat model pada aplikasi 'main' dengan nama 'Item' dan memiliki atribut wajib sebagai berikut : 
 `name` sebagai nama item dengan tipe `CharField`.
@@ -50,8 +62,20 @@ def show_main(request):
     }
     return render(request, "main.html", context)
 ```
-### Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py. ###
 
+### Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py. ###
+* Buka berkas `urls.py` di dalam direktori `main`
+* Isi `urls.py` dengan kode ini : 
+```ruby
+from django.urls import path
+from main.views import show_main
+
+app_name = 'main'
+
+urlpatterns = [
+    path('', show_main, name='show_main'),
+]
+```
 
 ### Melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet. ###
 * Buka Adaptable.io pada browser, login menggunakan GitHub, lalu tekan tombol `New App`.
