@@ -1,3 +1,261 @@
+# Tugas 3 : Implementasi Form dan Data Delivery pada Django #
+## Farah Dhiya Ramadhina/PBP B/2206082934 ##
+
+## A. Apa perbedaan antara form `POST` dan form `GET` dalam Django? ##
+### `POST` ###
+Dengan metode `POST` pada Django, data formulir dikirimkan dalam badan permintaan HTTP. Di mana, dat, seperti nilai variabel tidak ditampilkan di URL, sehingga lebih aman untuk mengirim data-data sensitif seperti *password*. POST digunakan untuk mengirim data yang akan dimasukkan atau diperbarui di server, seperti saat menambahkan entri pada database. Input data dalam metode POST pada Django dilakukan dengan melalui form.
+### `GET` ###
+ Dalam metode `GET` pada Django, data formulir dikirimkan sebagai bagian dari URL. Hal ini membuat data, seperti nilai variabel terlihat dan dapat diakses oleh siapa saja yang melihat URL tersebut sehingga dinilai kurang aman. Namun, dengan metode GET, user dapat dengan mudah memasukkan atau mengambil data dari server tanpa memengaruhi data di server. Misalnya, saat kita ingin mencari sesuatu di *search engine*, kita menggunakan metode `GET` karena kita hanya mengambil informasi tanpa mengubahnya. Input data dalam metode POST pada Django dilakukan dengan melalui link.
+
+## B. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data? ##
+- **XML (eXtensible Markup Language)**
+XML adalah format teks yang digunakan untuk mengorganisir dan menyusun data dalam struktur hierarkis. XML sangat fleksibel dan dapat digunakan untuk merepresentasikan berbagai jenis data. Namun, XML cenderung lebih berat dan sulit dibaca oleh manusia karena memiliki banyak tag.
+- **JSON (JavaScript Object Notation)**
+JSON adalah format data ringan yang mudah dibaca oleh manusia dan mudah diproses oleh mesin. JSON sangat populer dalam pengiriman data antara aplikasi web karena memiliki struktur yang sederhana dengan objek dan daftar. JSON adalah format yang ideal untuk API REST.
+- **HTML (Hypertext Markup Language)** 
+HTML adalah bahasa markup yang digunakan untuk membuat halaman web. HTML berfokus pada tampilan dan struktur halaman web. HTML tidak digunakan untuk pertukaran data antara aplikasi, tetapi untuk menampilkan konten ke pengguna melalui browser. 
+
+## C. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern? ##
+- JSON digunakan secara luas karena kemudahan dalam membaca dan menulis data, baik oleh manusia maupun komputer.
+- JSON memiliki format yang sederhana dengan struktur objek dan daftar, yang membuatnya ideal untuk merepresentasikan data yang lebih kompleks.
+- Banyak bahasa pemrograman memiliki dukungan bawaan untuk mengurai dan menghasilkan JSON, sehingga memudahkan komunikasi antara berbagai teknologi.
+- JSON ringan dan efisien dalam penggunaan bandwidth, yang penting dalam pengiriman data melalui jaringan.
+- JSON sering digunakan dalam pengembangan aplikasi web berbasis RESTful API, di mana data dikirimkan dan diterima dalam format JSON yang mudah diinterpretasi oleh server dan klien.
+
+## D. Implementasi Checklist *step-by-step*. ##
+### Membuat input form untuk menambahkan objek model pada app sebelumnya. ###
+* Mengaktifkan virtual environment dengan menjalankan prompt berikut pada terminal direktori aplikasi kita `source env/bin/activate` 
+* Mengubah routing `main/` menjadi `/` dengan mengubah kode path `main/` menjadi `' '`  pada *file* `urls.py` yang ada pada folder `quidditch_supplies` seperti berikut : 
+```ruby
+urlpatterns = [
+    path('', include('main.urls')),
+    path('admin/', admin.site.urls),
+]
+```
+* Menjalankan server dengan perintah `python manage.py runserver` dan buka http://localhost:8000/  untuk melihat hasilnya
+* Buat folder `templates` pada *root folder* dan buat file HTML berjudul `base.html` yang berfungsi sebagai *template* dasar untuk menjadi kerangka umum halaman web lainnya. Isi file `base.html` dengan kode berikut : 
+```ruby
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        {% block meta %}
+        {% endblock meta %}
+    </head>
+
+    <body>
+        {% block content %}
+        {% endblock content %}
+    </body>
+</html>
+```
+* Buka file `settings.py` pada subdirektori `quidditch_supplies` dan tambahkan kode ini pada baris yg mengandung `TEMPLATES` : 
+```ruby
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'], # Tambahkan kode ini
+        ...
+    }
+```
+* Ubah file `MAIN.HTML` pada subdirktori `templates` yg ada pada `main` seperti berikut : 
+```ruby
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Shopping List Page</h1>
+
+    <h5>Name:</h5>
+    <p>{{name}}</p>
+
+    <h5>Class:</h5>
+    <p>{{class}}</p>
+{% endblock content %}
+```
+* Buat file dengan nama `forms.py` pada direktori `main` dan isi dengan kode berikut :
+```ruby
+from django.forms import ModelForm
+from main.models import Product
+
+class ProductForm(ModelForm):
+    class Meta:
+        model = Product
+        fields = ["name", #amount", "price", "description", "category"] #Isilah field sesuai yang kamu inginkan ada pada produk mu
+```
+* Tambahkan kode berikut pada file `views.py` pada folder `main` :
+```ruby
+from django.http import HttpResponseRedirect
+from main.forms import ProductForm
+from django.urls import reverse
+```
+dan tambahkan fungsi `create_request` seperti berikut untuk membuat formulir yang dapat menambahkan produk setelah data di-*submit* dari form : 
+```ruby
+def create_product(request):
+    form = ProductForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "create_product.html", context)
+```
+* Buka file `views.py` dan ubah fungsi `show_main` menjadi seperti berikut : 
+```ruby
+def show_main(request):
+    products = Product.objects.all()
+
+    context = {
+        'name': 'Pak Bepe', # Nama kamu
+        'class': 'PBP A', # Kelas PBP kamu
+        'products': products
+    }
+
+    return render(request, "main.html", context)
+```
+* Buka file `urls.py` pada folder `main` dan import fungsi `create_product` serta tambahkan *path url* dalam `urlpatterns` seperti berikut : 
+```ruby
+from main.views import show_main, create_product
+...
+path('create-product', create_product, name='create_product'),
+```
+* Buat file dengan nama `create_product.html` pada direktori `main/templates` dan isi dengan kode berikut : 
+```ruby
+{% extends 'base.html' %} 
+
+{% block content %}
+<h1>Add New Product</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Add Product"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}
+```
+* Tambahkan kode berikut dalam `{% block content %}` pada file `main.html` :
+```ruby
+...
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Date Added</th>
+    </tr>
+
+    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+
+    {% for product in products %}
+        <tr>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.date_added}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br />
+
+<a href="{% url 'main:create_product' %}">
+    <button>
+        Add New Product
+    </button>
+</a>
+
+{% endblock content %}
+```
+
+### Menambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID. ###
+#### Fungsi Views dalam format XML ####
+* Tambahkan kode berikut pada file `views.py` pada folder `main` : 
+```ruby
+from django.http import HttpResponse
+from django.core import serializers
+```
+* Buat fungsi `show_xml` seperti berikut : 
+```ruby
+def show_xml(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+```
+#### Fungsi Views dalam format JSON ####
+* Buat fungsi `show_json` seperti berikut pada file `views.py` yang ada pada folder `main` : 
+```ruby
+def show_json(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+```
+#### Fungsi Views dalam format XML by ID ####
+* Buat fungsi `show_xml_by_id` seperti berikut pada file `views.py` yang ada pada folder `main` : 
+```ruby
+def show_xml_by_id(request, id):
+    data = Product.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+```
+#### Fungsi Views dalam format JSON by ID ####
+* Buat fungsi `show_json_by_id` seperti berikut pada file `views.py` yang ada pada folder `main` : 
+```ruby
+def show_json_by_id(request, id):
+    data = Product.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+```
+
+### Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2. ###
+#### Routing URL fungsi views dalam format XML ####
+* Buka file `urls.py` pada folder `main` dan import fungsi `show_xml` serta tambahkan *path url* dalam `urlpatterns` seperti berikut : 
+```ruby
+from main.views import show_main, create_product, show_xml
+...
+path('xml/', show_xml, name='show_xml'), 
+...
+```
+#### Routing URL fungsi views dalam format JSON ####
+* Buka file `urls.py` pada folder `main` dan import fungsi `show_json` serta tambahkan *path url* dalam `urlpatterns` seperti berikut : 
+```ruby
+from main.views import show_main, create_product, show_xml, show_json
+...
+path('json/', show_json, name='show_json'),
+...
+```
+#### Routing URL fungsi views dalam format XML by ID ####
+* Buka file `urls.py` pada folder `main` dan import fungsi `show_xml_by_id` serta tambahkan *path url* dalam `urlpatterns` seperti berikut : 
+```ruby
+from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, 
+...
+path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+...
+```
+#### Routing URL fungsi views dalam format JSON by ID ####
+* Buka file `urls.py` pada folder `main` dan import fungsi `show_json_by_id` serta tambahkan *path url* dalam `urlpatterns` seperti berikut : 
+```ruby
+from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id 
+...
+path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
+...
+```
+
+## E. Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam `README.md.` ##
+- HTML
+- XML
+- JSON
+- XML *by ID*
+- JSON *by ID*
+
 # Tugas 2: Implementasi Model-View-Template (MVT) pada Django #
 ## Farah Dhiya Ramadhina/PBP B/2206082934 ##
 
