@@ -3,7 +3,7 @@
 
 ## A. Apa perbedaan antara form `POST` dan form `GET` dalam Django? ##
 ### `POST` ###
-Dengan metode `POST` pada Django, data formulir dikirimkan dalam badan permintaan HTTP. Di mana, dat, seperti nilai variabel tidak ditampilkan di URL, sehingga lebih aman untuk mengirim data-data sensitif seperti *password*. POST digunakan untuk mengirim data yang akan dimasukkan atau diperbarui di server, seperti saat menambahkan entri pada database. Input data dalam metode POST pada Django dilakukan dengan melalui form.
+Dengan metode `POST` pada Django, data formulir dikirimkan dalam badan permintaan HTTP. Di mana data, seperti nilai variabel tidak ditampilkan di URL, sehingga lebih aman untuk mengirim data-data sensitif seperti *password*. POST digunakan untuk mengirim data yang akan dimasukkan atau diperbarui di server, seperti saat menambahkan entri pada database. Input data dalam metode POST pada Django dilakukan dengan melalui form.
 ### `GET` ###
  Dalam metode `GET` pada Django, data formulir dikirimkan sebagai bagian dari URL. Hal ini membuat data, seperti nilai variabel terlihat dan dapat diakses oleh siapa saja yang melihat URL tersebut sehingga dinilai kurang aman. Namun, dengan metode GET, user dapat dengan mudah memasukkan atau mengambil data dari server tanpa memengaruhi data di server. Misalnya, saat kita ingin mencari sesuatu di *search engine*, kita menggunakan metode `GET` karena kita hanya mengambil informasi tanpa mengubahnya. Input data dalam metode POST pada Django dilakukan dengan melalui link.
 
@@ -63,7 +63,7 @@ TEMPLATES = [
         ...
     }
 ```
-* Ubah file `MAIN.HTML` pada subdirktori `templates` yg ada pada `main` seperti berikut : 
+* Ubah file `main.html` pada subdirktori `templates` yg ada pada `main` seperti berikut : 
 ```ruby
 {% extends 'base.html' %}
 
