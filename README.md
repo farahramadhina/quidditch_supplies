@@ -252,11 +252,20 @@ path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
 ```
 
 ## E. Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam `README.md.` ##
-- HTML
-- XML
-- JSON
-- XML *by ID*
-- JSON *by ID*
+### 1. HTML ###
+(https://github.com/farahramadhina/quidditch_supplies/assets/124555865/40853068-a81e-4d25-a608-6fcea8e1f205)
+
+### 2. XML ###
+(https://github.com/farahramadhina/quidditch_supplies/assets/124555865/62d6511b-ea47-451f-8592-6895ee4b7e99)
+
+### 3. JSON ###
+(https://github.com/farahramadhina/quidditch_supplies/assets/124555865/fd2bae29-86e0-43f3-ab1d-1d61b852d46e)
+
+### 4. XML *by ID* ###
+(https://github.com/farahramadhina/quidditch_supplies/assets/124555865/944fc824-f3b4-43bb-be0e-6cda9de33b49)
+
+### 5. JSON *by ID* ###
+(https://github.com/farahramadhina/quidditch_supplies/assets/124555865/3ffdda7a-3222-4a55-a99c-4caea84981e2)
 
 
 # Tugas 2: Implementasi Model-View-Template (MVT) pada Django #
