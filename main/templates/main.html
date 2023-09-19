@@ -1,6 +1,43 @@
-<h1>Quidditch Supplies Page</h1>
+{% extends 'base.html' %}
 
-<h5>Name: </h5>
-<p>Farah Dhiya Ramadhina</p> <!-- Ubahlah sesuai dengan nama kamu -->
-<h5>Class: </h5>
-<p>PBP B</p> <!-- Ubahlah sesuai dengan kelas kamu -->
+{% block content %}
+    <h1>Quidditch Supplies Page</h1>
+
+    <h5>Name:</h5>
+    <p>Farah Dhiya Ramadhina</p>
+
+    <h5>Class:</h5>
+    <p>PBP B</p>
+
+    ...
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Category</th>
+    </tr>
+
+    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+
+    {% for product in products %}
+        <tr>
+            <td>{{product.name}}</td>
+            <td>{{product.amount}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.category}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br />
+
+<a href="{% url 'main:create_product' %}">
+    <button>
+        Add New Product
+    </button>
+</a>
+
+{% endblock content %}
