@@ -24,7 +24,7 @@ HTML adalah bahasa markup yang digunakan untuk membuat halaman web. HTML berfoku
 
 ## D. Implementasi Checklist *step-by-step*. ##
 ### Membuat input form untuk menambahkan objek model pada app sebelumnya. ###
-* Mengaktifkan virtual environment dengan menjalankan prompt berikut pada terminal direktori aplikasi kita `source env/bin/activate` 
+* Mengaktifkan virtual environment dengan menjalankan *prompt* berikut pada terminal direktori aplikasi kita `source env/bin/activate` 
 * Mengubah routing `main/` menjadi `/` dengan mengubah kode path `main/` menjadi `' '`  pada *file* `urls.py` yang ada pada folder `quidditch_supplies` seperti berikut : 
 ```ruby
 urlpatterns = [
@@ -63,12 +63,12 @@ TEMPLATES = [
         ...
     }
 ```
-* Ubah file `main.html` pada subdirktori `templates` yg ada pada `main` seperti berikut : 
+* Ubah file `main.html` pada subdirektori `templates` yg ada pada `main` seperti berikut : 
 ```ruby
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Shopping List Page</h1>
+    <h1>Quidditch Supplies Page</h1>
 
     <h5>Name:</h5>
     <p>{{name}}</p>
@@ -85,7 +85,7 @@ from main.models import Product
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ["name", #amount", "price", "description", "category"] #Isilah field sesuai yang kamu inginkan ada pada produk mu
+        fields = ["name", "amount", "price", "description", "category"] #Pilihan field saya tulis sesuai yang saya inginkan ada pada produk saya
 ```
 * Tambahkan kode berikut pada file `views.py` pada folder `main` :
 ```ruby
@@ -111,8 +111,8 @@ def show_main(request):
     products = Product.objects.all()
 
     context = {
-        'name': 'Pak Bepe', # Nama kamu
-        'class': 'PBP A', # Kelas PBP kamu
+        'name': 'Farah Dhiya Ramadhina', # Nama kamu
+        'class': 'PBP B', # Kelas PBP kamu
         'products': products
     }
 
@@ -152,9 +152,10 @@ path('create-product', create_product, name='create_product'),
 <table>
     <tr>
         <th>Name</th>
+        <th>Amount</th>
         <th>Price</th>
         <th>Description</th>
-        <th>Date Added</th>
+        <th>Category</th>
     </tr>
 
     {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
@@ -162,9 +163,10 @@ path('create-product', create_product, name='create_product'),
     {% for product in products %}
         <tr>
             <td>{{product.name}}</td>
+            <td>{{product.amount}}</td>
             <td>{{product.price}}</td>
             <td>{{product.description}}</td>
-            <td>{{product.date_added}}</td>
+            <td>{{product.category}}</td>
         </tr>
     {% endfor %}
 </table>
@@ -255,6 +257,7 @@ path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
 - JSON
 - XML *by ID*
 - JSON *by ID*
+
 
 # Tugas 2: Implementasi Model-View-Template (MVT) pada Django #
 ## Farah Dhiya Ramadhina/PBP B/2206082934 ##
