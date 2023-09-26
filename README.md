@@ -29,7 +29,8 @@ Untuk meningkatkan keamanan, penting untuk mengimplementasikan praktik-praktik k
 
 ## E. Implementasi Checklist *step-by-step*. ##
 ### Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar. ###
-* Mengaktifkan virtual environment dengan menjalankan *prompt* berikut pada terminal direktori aplikasi kita `source env/bin/activate` 
+* Mengaktifkan virtual environment dengan menjalankan *prompt* berikut pada terminal direktori aplikasi kita `source env/bin/activate`.
+
 **Fungsi Registrasi**
 * Buka `views.py` yang ada pada `main` dan tambahkan import `redirect`, `UserCreationForm`, dan `messages`
 * Buat fungsi `register` seperti berikut yg menerima parameter `request`
@@ -290,6 +291,7 @@ def logout_user(request):
 ...
 ```
 * Refresh halaman *login* dan coba untuk login kembali. Pada halaman *main* akan muncul *last login* kamu
+
 
 # Tugas 3 : Implementasi Form dan Data Delivery pada Django #
 ## Farah Dhiya Ramadhina/PBP B/2206082934 ##
