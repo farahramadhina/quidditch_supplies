@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Quidditch Supplies Page</h1>
+    <h1>{{ app_name }}</h1>
 
     <h5>Name:</h5>
-    <p>Farah Dhiya Ramadhina</p>
+    <p>{{ name }}</p>
 
     <h5>Class:</h5>
-    <p>PBP B</p>
+    <p>{{ class }}</p>
 
     ...
 <table>
@@ -17,6 +17,7 @@
         <th>Price</th>
         <th>Description</th>
         <th>Category</th>
+        <th>Actions</th>
     </tr>
 
     {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
@@ -27,7 +28,7 @@
             <td>{{product.amount}}</td>
             <td>{{product.price}}</td>
             <td>{{product.description}}</td>
-            <td>{{product.category}}</td>
+            <td>{{product.category}}</td> 
         </tr>
     {% endfor %}
 </table>
