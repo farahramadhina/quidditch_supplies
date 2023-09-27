@@ -10,28 +10,41 @@
     <p>{{ class }}</p>
 
     ...
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Amount</th>
-        <th>Price</th>
-        <th>Description</th>
-        <th>Category</th>
-        <th>Actions</th>
-    </tr>
-
-    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-
-    {% for product in products %}
-        <tr>
-            <td>{{product.name}}</td>
-            <td>{{product.amount}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.description}}</td>
-            <td>{{product.category}}</td> 
-        </tr>
-    {% endfor %}
-</table>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.category }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.amount }}</td>
+                    <td>
+                        {{ product.actions }}
+                        <a href="{% url 'main:increase_amount' product.id %}">
+                            <button>+</button>
+                        </a>
+                        <a href="{% url 'main:reduce_amount' product.id %}">
+                            <button>-</button>
+                        </a>
+                    </td>
+                    <td>
+                        <!-- Any other actions you want to include -->
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 <br />
 

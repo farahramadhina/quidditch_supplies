@@ -90,3 +90,23 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def reduce_amount(request, id):
+    product = Product.objects.get(pk=id)
+
+    # ngecek apakah produknya milik usernya 
+    if product.user == request.user:
+        if product.amount > 0:  
+            product.amount -= 1
+            product.save()
+
+    return redirect('main:show_main')
+
+def increase_amount(request, id):
+    product = Product.objects.get(pk=id)
+
+    if product.user == request.user:
+        product.amount += 1
+        product.save()
+
+    return redirect('main:show_main')
