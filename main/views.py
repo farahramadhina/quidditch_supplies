@@ -21,7 +21,7 @@ def show_main(request):
     products = Product.objects.filter(user=request.user)
 
     context = {
-        'app_name' : 'Sofita Penghancur Gedung',
+        'app_name' : 'Quality Quidditch Supplies',
         'name': request.user.username,
         'class': 'PBP B', # Kelas PBP kamu
         'products': products,
@@ -108,5 +108,14 @@ def increase_amount(request, id):
     if product.user == request.user:
         product.amount += 1
         product.save()
+
+    return redirect('main:show_main')
+
+def delete_product(request, id):
+    product = Product.objects.get(pk=id)
+
+    # ngecek apakah produknya milik usernya 
+    if product.user == request.user:
+        product.delete()
 
     return redirect('main:show_main')
