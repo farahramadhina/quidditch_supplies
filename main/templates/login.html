@@ -9,6 +9,25 @@
 <div class = "login">
 
     <h1>Login</h1>
+    <style>
+        body {
+        background-color: #FFE4C4;
+    }
+    
+    /* Center the login form vertically and horizontally */
+    .login {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh; /* Set the container height to fill the viewport height */
+    }
+    
+    /* Change font to Poppins for app name, name, and class */
+    h1, h5, p {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 
     <form method="POST" action="">
         {% csrf_token %}

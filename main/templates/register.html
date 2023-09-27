@@ -9,7 +9,25 @@
 <div class = "login">
     
     <h1>Register</h1>  
+    <style>
+        body {
+        background-color: #FFE4C4;
+    }
+    
+    /* Center the register form vertically and horizontally */
+    .register {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh; /* Set the container height to fill the viewport height */
+    }
 
+    /* Change font to Poppins for app name, name, and class */
+    h1, h5, p {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
         <form method="POST" >  
             {% csrf_token %}  
             <table>  
