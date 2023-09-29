@@ -20,12 +20,14 @@ from django.urls import reverse
 def show_main(request):
     products = Product.objects.filter(user=request.user)
 
+    last_login = request.COOKIES.get('last_login', 'N/A')
+
     context = {
         'app_name' : 'Quality Quidditch Supplies',
         'name': request.user.username,
         'class': 'PBP B', # Kelas PBP kamu
         'products': products,
-        'last_login': request.COOKIES['last_login'],
+        'last_login': last_login,
     }
 
     return render(request, "main.html", context)
@@ -119,3 +121,18 @@ def delete_product(request, id):
         product.delete()
 
     return redirect('main:show_main')
+
+def edit_product(request, id):
+    # Get product berdasarkan ID
+    product = Product.objects.get(pk = id)
+
+    # Set product sebagai instance dari form
+    form = ProductForm(request.POST or None, instance=product)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_product.html", context)

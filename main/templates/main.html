@@ -1,117 +1,214 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <style>
-        body {
-            background-color: #FFE4C4;
-        }
-
-        /* Change font to Poppins for app name, name, and class */
-        h1, h5, p {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* Center-align app name, name, and class */
-        .text-center {
-            text-align: center;
-        }
-
-        /* Style for "Sesi terakhir login" */
-        .last-login {
-            font-weight: normal; /* Change font weight to regular */
-            font-size: smaller; /* Minimize font size */
-            display: block; /* Display on a new line */
-            text-align: center; /* Center-align the text */
-        }
-
-        /* Style for product cards */
-        .product-card {
-            border: 1px solid #ddd;
-            background-color: #FFFAF1;
-            padding: 10px;
-            margin: 10px;
-            display: inline-block;
-            width: calc(33.33% - 20px); /* Adjust card width to fit three cards in a row */
-            box-sizing: border-box;
-            vertical-align: top;
-        }
-
-        /* Style for product images */
-        .product-image {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Style for product buttons */
-        .product-buttons {
-            margin-top: 10px;
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        /* Style for individual product buttons */
-        .product-button {
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            background-color: #f5f5f5;
-            cursor: pointer;
-        }
-    </style>
-
-    <div class="text-center">
-        <h1>{{ app_name }}</h1>
-
-        <h5>Name:</h5>
-        <p>{{ name }}</p>
-
-        <h5>Class:</h5>
-        <p>{{ class }}</p>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Category
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Broomstick</a></li>
+              <li><a class="dropdown-item" href="#">Armour</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Others</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
     </div>
+  </nav>
+<style>
+    body {
+        background-color: #FFE4C4;
+    }
 
-    <div class="table-container">
-        <div class="product-cards">
-            {% for product in products %}
-                <div class="product-card">
-                    <img class="product-image" src="{{ comet200.jpg }}" alt="{{ product.name }}"> 
+    /* Change font to Palatino Linotype for app name */
+    .app-name {
+        font-family: 'Palatino Linotype', serif;
+        font-weight: bold; /* Make it bold */
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* Change font to Poppins for app name, name, and class */
+    h1, h5, p {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Center-align app name, name, and class */
+    .text-center {
+        text-align: center;
+    }
+
+    /* Style for "Sesi terakhir login" */
+    .last-login {
+        font-weight: normal;
+        font-size: smaller;
+        display: block;
+        text-align: center;
+    }
+
+    /* Style for product cards */
+    .product-cards {
+        display: flex;
+        flex-wrap: wrap; /* Enable wrapping */
+        justify-content: flex-start;
+        gap: 30px; /* Space between cards */
+    }
+
+    /* Style for product card */
+    .product-card {
+        width: calc(33.33% - 20px); /* Adjust card width to fit three cards in a row */
+        background-color: #FFFAF1;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add box shadow */
+        border-radius: 10px; /* Rounded corners */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* Style for product images */
+    .product-image {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Style for product details */
+    .product-details {
+        text-align: left;
+    }
+
+    /* Style for individual product buttons */
+    .product-button {
+        padding: 5px 10px;
+        border: 1px solid #ddd;
+        background-color: #f5f5f5;
+        cursor: pointer;
+    }
+
+    /* Style for button container */
+    .button-container {
+        text-align: center;
+        margin-top: 20px; /* Add margin to separate buttons from cards */
+    }
+
+    /* Style for buttons */
+    .button-container button {
+        padding: 10px 20px; /* Increase button padding */
+        background-color: #f5f5f5; /* Change button background color */
+        color: #000; /* Change button text color */
+        font-size: 16px; /* Increase button font size */
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.0.1); /* Add box shadow */
+        border-radius: 5px; /* Rounded corners */
+    }
+
+    /* Style for "Add New Product" and "Logout" buttons */
+    .add-product-button, .logout-button {
+        background-color: #f5f5f5;
+        color: #000;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        padding: 10px 30px;
+    }
+
+    /* Style for product amount box */
+    .product-amount {
+        background-color: #f5f5f5;
+        color: #000;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        padding: 5px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+
+<div class="text-center">
+  <h1 class="app-name">{{ app_name }}</h1>
+
+  <h5>Welcome, {{ name }}</h5>
+  <h5>Class : {{ class }}</h5>
+</div>
+
+<div class="table-container">
+    <div class="product-cards">
+        {% for product in products %}
+            <div class="product-card">
+                <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }}"> 
+                <div class="product-details">
                     <h3>{{ product.name }}</h3>
                     <p>{{ product.description }}</p>
                     <p>Category: {{ product.category }}</p>
                     <p>Price: {{ product.price }}</p>
-                    <p>Amount: {{ product.amount }}</p>
-                    <div class="product-buttons">
-                        <a href="{% url 'main:increase_amount' product.id %}">
-                            <button>+</button>
-                        </a>
-                        <a href="{% url 'main:reduce_amount' product.id %}">
-                            <button>-</button>
-                        </a>
-                        <a href="{% url 'main:delete_product' product.id %}">
-                            <button>Delete</button>
-                        </a>
-                    </div>
                 </div>
-            {% endfor %}
-        </div>
+                <div class="product-amount">
+                    <a href="{% url 'main:reduce_amount' product.id %}">
+                        <button>-</button>
+                    </a>
+                    <span>{{ product.amount }}</span>
+                    <a href="{% url 'main:increase_amount' product.id %}">
+                        <button>+</button>
+                    </a>
+                </div>
+                <div class="product-buttons">
+                    <a href="{% url 'main:edit_product' product.pk %}">
+                        <button>Edit</button>
+                    </a>
+                    <a href="{% url 'main:delete_product' product.id %}">
+                        <button>Delete</button>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-    <br />
+</div>
+<br />
 
-    <div class="button-container">
-        <a href="{% url 'main:create_product' %}">
-            <button>
-                Add New Product
-            </button>
-        </a>
+<div class="button-container">
+    <a href="{% url 'main:create_product' %}">
+        <button>
+            Add New Product
+        </button>
+    </a>
 
-        <span class="last-login">Sesi terakhir login: {{ last_login }}</span>
+    <span class="last-login">Sesi terakhir login: {{ last_login }}</span>
 
-        <a href="{% url 'main:logout' %}">
-            <button>
-                Logout
-            </button>
-        </a>
-    </div>
-
-
-
+    <a href="{% url 'main:logout' %}">
+        <button>
+            Logout
+        </button>
+    </a>
+</div>
 {% endblock content %}
