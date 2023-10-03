@@ -1,63 +1,162 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg navbar-dark p-3" id="headerNav">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand d-block d-lg-none" href="#">
+        <img src="media/product_images/honeydukes_logo.png" height="80" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  
+      <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mx-auto ">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link mx-2" href="#">Products</a>
+          </li>
+          <li class="nav-item d-none d-lg-block">
+            <a class="nav-link mx-2" href="#">
+              <img src="media/product_images/honeydukes_logo.png" height="80" />
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="#">Pricing</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Category
+            <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Company
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Broomstick</a></li>
-              <li><a class="dropdown-item" href="#">Armour</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Others</a></li>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">About Us</a></li>
+              <li><a class="dropdown-item" href="#">Contact us</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
       </div>
     </div>
   </nav>
 <style>
     body {
-        background-color: #FFE4C4;
+        background-color: #76e6c1;
     }
 
     /* Change font to Palatino Linotype for app name */
     .app-name {
-        font-family: 'Palatino Linotype', serif;
-        font-weight: bold; /* Make it bold */
+        color: #fffde6;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* centers the element */
+        text-align: center;
+        text-shadow: 0px 3.999999761581421px 3.999999761581421px rgba(0, 0, 0, 0.25);
+        font-family: Poppins;
+        font-size: 50px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
         margin-top: 20px;
         margin-bottom: 20px;
     }
 
+    /* Style the transparent navbar */
+    .navbar {
+        background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
+        padding: 15px 0;
+    }
+
+    .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+        /* Make the navbar transparent */
+    #headerNav {
+        background-color: transparent;
+    }
+
+    /* Style for the navbar links with the specified color */
+    .nav-link {
+            color: #00937A;
+        }
+
+    /* Style for active navbar link */
+    .navbar-nav .nav-link.active {
+        color: #00937A; /* Change the text color for the active link */
+    }
+
+    /* Style for the logo */
+    .navbar-brand img {
+        height: 40px; /* Adjust the height of the logo */
+        margin-right: 10px; /* Add some margin to separate the logo from the text */
+    }
+
+    /* Style for the image and its container */
+    .image-container {
+        background: url(media/product_images/store_header.jpg), lightgray -9.14px -153.971px / 100% 192.352% no-repeat;
+        height: 30vh;
+        width: 100%;
+        top: 0;
+        left: 0;
+        position: relative;
+        z-index: -1; /* Send the image behind the content */
+    }
+
+
+    /* Adjust the position and size of the image within its container */
+    .image {
+        filter: blur(2px);
+        height: 100%;
+        width: 100%;
+    }
+
+    
+    
+    h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        text-align: center;
+        font-family: Poppins;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
     /* Change font to Poppins for app name, name, and class */
-    h1, h5, p {
-        font-family: 'Poppins', sans-serif;
+    h5 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+        font-family: Poppins;
     }
 
     /* Center-align app name, name, and class */
     .text-center {
         text-align: center;
+    }
+
+    /* Style for the image and its container */
+    .image-container {
+        background: url(<media/product_images/store_header.jpg>), lightgray -9.14px -153.971px / 100% 192.352% no-repeat;
+        height: 30vh;
+        width: 100%;
+        top: 0;
+        left: 0;
+        position: relative;
+    }
+
+    /* Adjust the position and size of the image within its container */
+    .image {
+        filter: blur(2px);
+        height: 100%;
+        width: 100%;
     }
 
     /* Style for "Sesi terakhir login" */
@@ -72,19 +171,19 @@
     .product-cards {
         display: flex;
         flex-wrap: wrap; /* Enable wrapping */
-        justify-content: flex-start;
-        gap: 30px; /* Space between cards */
+        justify-content: center;
+        gap: 40px; /* Space between cards */
     }
 
     /* Style for product card */
     .product-card {
-        width: calc(33.33% - 20px); /* Adjust card width to fit three cards in a row */
-        background-color: #FFFAF1;
+        width: calc(20% - 20px); /* Adjust card width to fit three cards in a row */
+        border-radius: 20px;
+        background: linear-gradient(180deg, #FFDAEA 0%, #FA619E 100%);
         margin-top: 30px;
         margin-bottom: 20px;
         padding: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add box shadow */
-        border-radius: 10px; /* Rounded corners */
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -155,18 +254,23 @@
     }
 </style>
 
-<div class="text-center">
-  <h1 class="app-name">{{ app_name }}</h1>
+<div class="image-container">
+    <img class="image" src="media/product_images/store_header.jpg" >
+    <h1 class="app-name" style="text-align : center">{{ app_name }}</h1>
 
-  <h5>Welcome, {{ name }}</h5>
+</div>
+
+<div class="text-center">
+  <h3>Welcome, {{ name }}</h3>
   <h5>Class : {{ class }}</h5>
 </div>
+
 
 <div class="table-container">
     <div class="product-cards">
         {% for product in products %}
             <div class="product-card">
-                <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }}"> 
+                <img src="{{ product.image.url }}" alt="{{ product.name }}"> 
                 <div class="product-details">
                     <h3>{{ product.name }}</h3>
                     <p>{{ product.description }}</p>
@@ -195,6 +299,7 @@
     </div>
 </div>
 <br />
+
 
 <div class="button-container">
     <a href="{% url 'main:create_product' %}">

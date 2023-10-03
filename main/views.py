@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from .models import Product
 
 
 @login_required(login_url='/login')
@@ -23,7 +24,7 @@ def show_main(request):
     last_login = request.COOKIES.get('last_login', 'N/A')
 
     context = {
-        'app_name' : 'Quality Quidditch Supplies',
+        'app_name' : 'Honeydukes',
         'name': request.user.username,
         'class': 'PBP B', # Kelas PBP kamu
         'products': products,
@@ -126,6 +127,7 @@ def delete_product(request, id):
 def edit_product(request, id):
     # Get product berdasarkan ID
     product = Product.objects.get(pk = id)
+    image_url = product.image.url
 
     # Set product sebagai instance dari form
     form = ProductForm(request.POST or None, instance=product)
@@ -137,3 +139,15 @@ def edit_product(request, id):
 
     context = {'form': form}
     return render(request, "edit_product.html", context)
+
+# View for Quidditch Armour page
+def quidditch_armour(request):
+    quidditch_armour_products = Product.objects.filter(category='Quidditch Armour')
+    context = {'products': quidditch_armour_products}
+    return render(request, 'quidditch_armour.html', context)
+
+# View for Broomstick page
+def broomstick(request):
+    broomstick_products = Product.objects.filter(category='Broomstick')
+    context = {'products': broomstick_products}
+    return render(request, 'broomstick.html', context)

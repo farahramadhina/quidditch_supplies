@@ -2,63 +2,126 @@
 
 {% block meta %}
     <title>Login</title>
+    <style>
+        /* Page-wide styles */
+        body {
+            background-color: #76e6c1;
+        }
+        h1, h5, p {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Centering the card */
+        .login {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url('/media/hogsmeade.jpeg'); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        .image {
+            filter: blur(2px);
+            height: 100%;
+            width: 100%;
+        }
+        /* Floating login card styles */
+        .wrapper {
+            width: 380px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .wrapper h1 {
+            font-size: 35px;
+            font-weight: 600;
+            line-height: 100px;
+            color: #fff;
+            background: linear-gradient(-135deg, #c2f4e3, #76e6c1);
+            border-radius: 15px 15px 0 0;
+        }
+        .wrapper form {
+            padding: 10px 30px 50px 30px;
+            margin-top : 10px;
+            margin-bottom : 10px;
+        }
+
+        .wrapper ul li{
+            font-family: 'Poppins', sans-serif;
+            font-size : smaller;
+            color: #c02c3e;
+        }
+
+        /* Apply the same style to the message info below Username and Password Confirmation */
+        .message-info {
+            font-family: 'Poppins', sans-serif;
+            font-size: smaller;
+            color: #c02c3e;
+        }
+        
+        .signup-link {
+            margin-top : 10px;
+            margin-bottom : 10px;
+        }
+
+        /*.button-submit {
+            width: 231px;
+            height: 46px;
+            flex-shrink: 0;
+            border-radius: 20px;
+            background: #76E6C1;
+            color: #4B1A17;
+            text-align: center;
+            font-family: Poppins;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            cursor: pointer;
+        } */
+        
+        /* Style the button text within the .button-submit class */
+        
+    </style>
 {% endblock meta %}
 
 {% block content %}
 
-<div class = "login">
+<div class="login">
+    <div class="wrapper">
+        <h1>Login</h1>
 
-    <h1>Login</h1>
-    <style>
-        body {
-        background-color: #FFE4C4;
-    }
-    
-    /* Center the login form vertically and horizontally */
-    .login {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh; /* Set the container height to fill the viewport height */
-    }
-    
-    /* Change font to Poppins for app name, name, and class */
-    h1, h5, p {
-            font-family: 'Poppins', sans-serif;
-        }
-    </style>
-
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
-
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
-        
-    Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
-
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="field">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Username" class="form-control">
+            </div>
+            <div class="field">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Password" class="form-control">
+            </div>
+            <div class="field">
+                <div class="button-submit"></div>
+                    <input type="submit" value="Login" class="btn login_btn">
+            </div>
+        </form>
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li class="message-info">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <div class="signup-link">
+            Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
+        </div>
+    </div>
 </div>
+    
 
 {% endblock content %}

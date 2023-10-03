@@ -3,20 +3,55 @@
 {% load static %}
 
 {% block content %}
+<style>
+    body {
+        background-color: #76e6c1;
+    }
 
-<h1>Edit Product</h1>
+    .edit-card {
+        width: calc(100% - 20px);
+        background-color: #fffde6; /* Set the card background color */
+        padding: 20px; /* Add padding to the card */
+        border: none; /* Add a border to the card */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
 
-<form method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Edit Product"/>
-            </td>
-        </tr>
-    </table>
-</form>
+    .input-field {
+        padding: 20px; /* Add padding to input fields */
+        border: none; /* Add a border to input fields */
+        border-radius: 10px;
+    }
 
+    /* Reduce the size of the category input field */
+    #id_category {
+        size : smaller;/* Adjust the width as needed */
+    }
+
+    .submit-button {
+        padding: 10px; /* Add padding to the submit button */
+        border: none; /* Add a border to the submit button */
+        gap : 20px;
+    }
+</style>
+
+<div class="container mt-5 edit-page"> <!-- Add Bootstrap container class and apply custom styles -->
+    <div class="card edit-card"> <!-- Apply custom styles to the card -->
+        <div class="card-body text-center"> <!-- Center-align text within the card -->
+            <h1 class="card-title">Edit Product</h1>
+
+            <form method="POST">
+                {% csrf_token %}
+                <table class="mx-auto"> <!-- Center the table on the card -->
+                    {{ form.as_table }}
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" class="btn btn-primary submit-button" value="Edit Product"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

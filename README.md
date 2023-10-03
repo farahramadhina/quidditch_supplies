@@ -1,3 +1,41 @@
+# Tugas 5: Desain Web menggunakan HTML, CSS dan Framework CSS #
+## Farah Dhiya Ramadhina/PBP B/2206082934 ##
+
+## A. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+**Selector Universal (*)**
+ Digunakan untuk memilih semua elemen di halaman. Sebaiknya digunakan dengan hati-hati karena dapat memengaruhi semua elemen. Waktu yang tepat untuk menggunakannya adalah saat kita ingin memberikan gaya umum untuk semua elemen, misalnya mengatur padding atau margin secara umum.
+**Selector Tipe (element)**
+ Digunakan untuk memilih semua elemen dengan jenis tertentu, seperti p untuk paragraf atau h1 untuk judul level 1. Waktu yang tepat untuk menggunakannya adalah saat kita ingin memberikan gaya khusus untuk suatu jenis elemen tertentu di seluruh halaman.
+**Selector ID (#id)**
+ Digunakan untuk memilih elemen dengan atribut id tertentu, yang seharusnya unik dalam satu halaman. Waktu yang tepat untuk menggunakannya adalah saat kita ingin memberikan gaya khusus untuk satu elemen tertentu yang memiliki ID tertentu.
+**Selector Kelas (.class)**
+ Digunakan untuk memilih elemen-elemen dengan kelas tertentu. Ini memungkinkan Anda memberikan gaya yang sama kepada beberapa elemen. Waktu yang tepat untuk menggunakannya adalah saat kita ingin membagi beberapa elemen menjadi kelompok dengan gaya yang sama.
+
+## B. Jelaskan HTML5 Tag yang kamu ketahui.
+Berikut HTML5 Tag yang umum yang saya tau :
+ <header>: Digunakan untuk mengelompokkan elemen-elemen yang berada di bagian atas halaman, seperti judul, logo, dan menu navigasi.
+ <nav>: Menandakan bagian yang berisi tautan navigasi, seperti menu.
+ <section>: Mengelompokkan konten yang memiliki tema atau topik yang sama dalam sebuah halaman.
+ <article>: Menandakan konten yang independen dan dapat berdiri sendiri, seperti artikel berita.
+ <aside>: Digunakan untuk konten yang berhubungan dengan konten utama, misalnya, sidebar dengan tautan terkait.
+ <footer>: Digunakan untuk mengelompokkan informasi terkait penulis, hak cipta, atau informasi kontak yang biasanya berada di bagian bawah halaman.
+ 
+## C. Jelaskan perbedaan antara margin dan padding.
+ **Margin**
+ Margin adalah ruang di luar batas elemen. Margin memengaruhi jarak antara elemen dengan elemen-elemen lain di sekitarnya. Margin tidak memiliki latar belakang atau warna. Padding: **Padding**
+ Padding adalah ruang di dalam batas elemen, antara isi elemen dan batasnya. Padding memengaruhi jarak antara isi elemen dan batasnya. Kita dapat memberikan latar belakang atau warna pada padding.
+
+## D. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+ **Tailwind CSS** 
+ Tailwind adalah framework CSS yang memberikan banyak kelas utilitas yang dapat digunakan langsung dalam HTML untuk mengatur tampilan elemen. Kelebihan Tailwind adalah fleksibilitas yang tinggi dan memungkinkan kita untuk mengkustomisasi tampilan dengan detail tinggi. Tailwind cocok jika kita ingin membuat desain yang sangat khusus.
+ **Bootstrap**
+ Bootstrap adalah framework CSS yang menyediakan komponen UI yang siap pakai seperti tombol, formulir, dan navigasi. Bootstrap memiliki desain yang telah dirancang dengan baik dan dapat mempercepat pengembangan web. Sebaiknya digunakan jika Anda ingin membuat situs dengan desain yang konsisten dan cepat.
+**Kapan Menggunakan Bootstrap atau Tailwind:**
+- Gunakan Bootstrap jika kita ingin membuat *web* dengan desain yang cepat dan konsisten tanpa perlu banyak kustomisasi.
+- Gunakan Tailwind jika kita ingin memiliki tingkat kustomisasi yang tinggi dan memiliki kendali penuh atas tampilan elemen-elemen di halaman web Anda. Tailwind cocok untuk proyek yang membutuhkan desain yang sangat unik.
+
+## E. Implementasi Checklist *step-by-step*.
+
 # Tugas 4: Implementasi Autentikasi, Session, dan Cookies pada Django #
 ## Farah Dhiya Ramadhina/PBP B/2206082934 ##
 
