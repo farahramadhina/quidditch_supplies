@@ -18,8 +18,6 @@ urlpatterns = [
     path('increase_amount/<int:id>/', increase_amount, name='increase_amount'),
     path('delete_product/<int:id>', delete_product, name='delete_product'),
     path('edit-product/<int:id>', edit_product, name='edit_product'),
-    path('quidditch-armour/', views.quidditch_armour, name='quidditch_armour'),
-    path('broomstick/', views.broomstick, name='broomstick'),
 ]
 
 

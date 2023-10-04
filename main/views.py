@@ -24,7 +24,7 @@ def show_main(request):
     last_login = request.COOKIES.get('last_login', 'N/A')
 
     context = {
-        'app_name' : 'Honeydukes',
+        'app_name' : 'Honeydukes Sweets Shop',
         'name': request.user.username,
         'class': 'PBP B', # Kelas PBP kamu
         'products': products,
@@ -139,15 +139,3 @@ def edit_product(request, id):
 
     context = {'form': form}
     return render(request, "edit_product.html", context)
-
-# View for Quidditch Armour page
-def quidditch_armour(request):
-    quidditch_armour_products = Product.objects.filter(category='Quidditch Armour')
-    context = {'products': quidditch_armour_products}
-    return render(request, 'quidditch_armour.html', context)
-
-# View for Broomstick page
-def broomstick(request):
-    broomstick_products = Product.objects.filter(category='Broomstick')
-    context = {'products': broomstick_products}
-    return render(request, 'broomstick.html', context)

@@ -1,38 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<nav class="navbar navbar-expand-lg navbar-dark p-3" id="headerNav">
-    <div class="container-fluid">
-      <a class="navbar-brand d-block d-lg-none" href="#">
-        <img src="media/product_images/honeydukes_logo.png" height="80" />
-      </a>
+<nav class="navbar navbar-expand-sm navbar-light" id="neubar">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img src="media/product_images/honeydukes_logo.png" height="60" /></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
   
       <div class=" collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mx-auto ">
+        <ul class="navbar-nav ms-auto ">
           <li class="nav-item">
             <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link mx-2" href="#">Products</a>
           </li>
-          <li class="nav-item d-none d-lg-block">
-            <a class="nav-link mx-2" href="#">
-              <img src="media/product_images/honeydukes_logo.png" height="80" />
-            </a>
-          </li>
           <li class="nav-item">
-            <a class="nav-link mx-2" href="#">Pricing</a>
+            <a class="nav-link mx-2" href="#">Location</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Company
+              About Us
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">About Us</a></li>
               <li><a class="dropdown-item" href="#">Contact us</a></li>
+              <li><a class="dropdown-item" href="#">History</a></li>
             </ul>
           </li>
         </ul>
@@ -41,10 +34,17 @@
   </nav>
 <style>
     body {
-        background-color: #76e6c1;
+        background: linear-gradient(to bottom right, #EE73BD 0%, rgba(211, 127, 178, 0.00) 50%) bottom right / 50% 50% no-repeat, linear-gradient(to bottom left, #EE73BD 0%, rgba(211, 127, 178, 0.00) 50%) bottom left / 50% 50% no-repeat, linear-gradient(to top left, #EE73BD 0%, rgba(211, 127, 178, 0.00) 50%) top left / 50% 50% no-repeat, linear-gradient(to top right, #EE73BD 0%, rgba(211, 127, 178, 0.00) 50%) top right / 50% 50% no-repeat;
     }
 
-    /* Change font to Palatino Linotype for app name */
+    /* Define the Poppins font */
+    @font-face {
+        font-family: 'Poppins';
+        src: url('quidditch_supplies/poppins-medium-webfont.woff2') format('woff2'); /* Update the path to your font file */
+        font-weight: normal;
+        font-style: normal;
+    }
+    
     .app-name {
         color: #fffde6;
         position: absolute;
@@ -54,7 +54,7 @@
         text-align: center;
         text-shadow: 0px 3.999999761581421px 3.999999761581421px rgba(0, 0, 0, 0.25);
         font-family: Poppins;
-        font-size: 50px;
+        font-size: 80px;
         font-style: normal;
         font-weight: 700;
         line-height: normal;
@@ -62,45 +62,40 @@
         margin-bottom: 20px;
     }
 
-    /* Style the transparent navbar */
-    .navbar {
-        background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
-        padding: 15px 0;
+	#neubar {
+      background: #76e6c1;
+      box-shadow: 4px 6px 12px rgba(0,0,0,0.4)
+    }
+    
+    .nav-item .active {
+      border-radius: 6px;
+      background: linear-gradient(145deg, #f5d7b2, #6bd9b5);
+      box-shadow:  4px 4px 8px #ddc1a0,
+                   -2px -2px 8px #f7e5cc;
+    }
+    #neubar .dropdown-menu a:hover {
+      color: #000000
+    }
+    #neubar .nav-item {
+      margin : auto 4px;
+    }
+    #neubar a {
+    
+      padding-left:12px;
+      padding-right:12px;
+    }
+    #neubar .dropdown-menu {
+      background : #80dab1
+    }
+    a.navbar-brand {
+      color: #000
     }
 
-    .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    }
-
-        /* Make the navbar transparent */
-    #headerNav {
-        background-color: transparent;
-    }
-
-    /* Style for the navbar links with the specified color */
-    .nav-link {
-            color: #00937A;
-        }
-
-    /* Style for active navbar link */
-    .navbar-nav .nav-link.active {
-        color: #00937A; /* Change the text color for the active link */
-    }
-
-    /* Style for the logo */
-    .navbar-brand img {
-        height: 40px; /* Adjust the height of the logo */
-        margin-right: 10px; /* Add some margin to separate the logo from the text */
-    }
 
     /* Style for the image and its container */
     .image-container {
         background: url(media/product_images/store_header.jpg), lightgray -9.14px -153.971px / 100% 192.352% no-repeat;
-        height: 30vh;
+        height: 40vh;
         width: 100%;
         top: 0;
         left: 0;
@@ -111,7 +106,7 @@
 
     /* Adjust the position and size of the image within its container */
     .image {
-        filter: blur(2px);
+        filter: blur(3px);
         height: 100%;
         width: 100%;
     }
@@ -129,34 +124,28 @@
         line-height: normal;
     }
 
-    /* Change font to Poppins for app name, name, and class */
-    h5 {
-        margin-top: 10px;
+
+    h4 {
+        margin-top: 30px;
         margin-bottom: 10px;
         text-align: center;
-        font-family: Poppins;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 450;
+        color: #7c173c;
+    }
+
+    h5 {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 450;
+        color: #7c173c;
     }
 
     /* Center-align app name, name, and class */
     .text-center {
         text-align: center;
-    }
-
-    /* Style for the image and its container */
-    .image-container {
-        background: url(<media/product_images/store_header.jpg>), lightgray -9.14px -153.971px / 100% 192.352% no-repeat;
-        height: 30vh;
-        width: 100%;
-        top: 0;
-        left: 0;
-        position: relative;
-    }
-
-    /* Adjust the position and size of the image within its container */
-    .image {
-        filter: blur(2px);
-        height: 100%;
-        width: 100%;
     }
 
     /* Style for "Sesi terakhir login" */
@@ -177,9 +166,9 @@
 
     /* Style for product card */
     .product-card {
-        width: calc(20% - 20px); /* Adjust card width to fit three cards in a row */
+        width: calc(23% - 20px); /* Adjust card width to fit three cards in a row */
         border-radius: 20px;
-        background: linear-gradient(180deg, #FFDAEA 0%, #FA619E 100%);
+        background: radial-gradient(70.26% 70.26% at 50.11% 50.09%, #FFDAEA 9.38%, #A8E7D0 100%);
         margin-top: 30px;
         margin-bottom: 20px;
         padding: 20px;
@@ -200,12 +189,24 @@
         text-align: left;
     }
 
-    /* Style for individual product buttons */
-    .product-button {
-        padding: 5px 10px;
-        border: 1px solid #ddd;
-        background-color: #f5f5f5;
+    /* Style for product buttons */
+    .product-buttons {
+        display: flex;
+        justify-content: center; /* Align buttons horizontally */
+        margin-top: 10px; /* Add margin to separate buttons */
+    }
+
+    /* Style for "Edit" and "Delete" buttons */
+    .product-buttons button {
+        padding: 5px 10px; /* Adjust button padding */
+        border: none;
+        background-color: #ffff; /* Button background color */
+        color: #000; /* Button text color */
+        font-size: 16px; /* Button font size */
         cursor: pointer;
+        border-radius: 5px; /* Rounded corners */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Box shadow */
+        margin: 0 5px; 
     }
 
     /* Style for button container */
@@ -228,29 +229,62 @@
 
     /* Style for "Add New Product" and "Logout" buttons */
     .add-product-button, .logout-button {
-        background-color: #f5f5f5;
+        padding: 10px 25px; /* Sesuaikan padding sesuai kebutuhan */
+        background-color: #76E6C1; /* Warna latar belakang */
+        border: none;
+        color: #4B1A17;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        cursor: pointer;
+        margin-top : 20px;
+        margin-button : 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+        border-radius: 15px; /* Tambahkan border-radius jika diperlukan */
+    }
+
+    .product-category {
+        background: #f7b2d8;
+        width: 100%; /* Set width to 100% to span the entire card */
+        height: 50px; /* Adjust the height as needed */
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: #000;
         font-size: 16px;
-        border: none;
-        cursor: pointer;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        border-radius: 5px;
-        padding: 10px 30px;
+        font-weight: 550;
+        margin: 0; /* Remove margin */
+        padding: 0; /* Remove padding */
+        margin-bottom: 10px;
     }
 
     /* Style for product amount box */
     .product-amount {
-        background-color: #f5f5f5;
+        background-color: #FFDAEA;
         color: #000;
+        width: 75px;
         font-size: 16px;
         border: none;
         cursor: pointer;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         border-radius: 5px;
-        padding: 5px 10px;
+        padding: 5px 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin: 0 auto 10px auto;
+    }
+
+    .product-amount button {
+        background: none;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        padding: 0 5px; /* Add padding to the buttons */
     }
 </style>
 
@@ -261,8 +295,8 @@
 </div>
 
 <div class="text-center">
-  <h3>Welcome, {{ name }}</h3>
-  <h5>Class : {{ class }}</h5>
+  <h4>Welcome, {{ name }} from class {{ class }}</h4>
+  <h5>Browse from our various products. We have {{ products|length }} sweets available to choose from</h5>
 </div>
 
 
@@ -270,11 +304,13 @@
     <div class="product-cards">
         {% for product in products %}
             <div class="product-card">
+                <div class="product-category">
+                    <span>{{ product.category }}</span>
+                </div>
                 <img src="{{ product.image.url }}" alt="{{ product.name }}"> 
                 <div class="product-details">
                     <h3>{{ product.name }}</h3>
                     <p>{{ product.description }}</p>
-                    <p>Category: {{ product.category }}</p>
                     <p>Price: {{ product.price }}</p>
                 </div>
                 <div class="product-amount">

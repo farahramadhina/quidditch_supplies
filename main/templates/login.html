@@ -3,11 +3,7 @@
 {% block meta %}
     <title>Login</title>
     <style>
-        /* Page-wide styles */
-        body {
-            background-color: #76e6c1;
-        }
-        h1, h5, p {
+        h1, p {
             font-family: 'Poppins', sans-serif;
         }
         /* Centering the card */
@@ -45,7 +41,7 @@
             border-radius: 15px 15px 0 0;
         }
         .wrapper form {
-            padding: 10px 30px 50px 30px;
+            padding: 10px 30px 20px 30px;
             margin-top : 10px;
             margin-bottom : 10px;
         }
@@ -61,6 +57,7 @@
             font-family: 'Poppins', sans-serif;
             font-size: smaller;
             color: #c02c3e;
+            margin-top: 5px;
         }
         
         .signup-link {
@@ -68,23 +65,52 @@
             margin-bottom : 10px;
         }
 
-        /*.button-submit {
-            width: 231px;
-            height: 46px;
-            flex-shrink: 0;
+        .field {
             border-radius: 20px;
-            background: #76E6C1;
+        }
+
+        /* Gaya tombol login yang sama dengan tombol "Create Product" */
+        .login_btn {
+            padding: 10px 25px; 
+            background-color: #76E6C1; /* Warna latar belakang */
+            border: none;
             color: #4B1A17;
             text-align: center;
-            font-family: Poppins;
-            font-size: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
             font-style: normal;
             font-weight: 500;
             line-height: normal;
             cursor: pointer;
-        } */
+            margin-top : 20px;
+            margin-button : 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+            border-radius: 15px; 
+        }
+        .register_btn {
+            padding: 10px 25px; 
+            background-color: transparent; /* Latar belakang transparan */
+            border: none;
+            color: #4B1A17;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            cursor: pointer;
+            border: 2px solid transparent; /* Tambahkan border yang transparan */
+            transition: background-color 0.3s ease; /* Animasi perubahan latar belakang */
+            border-radius: 15px; /* Tambahkan border-radius jika diperlukan */
+        }
+
+        /* Efek hover saat kursor mengarah ke tombol */
+        .register_btn:hover {
+            background-color: #76E6C1; /* Warna latar belakang saat hover */
+            border: 2px solid #76E6C1; /* Warna border saat hover */
+            color: #4B1A17; /* Warna teks saat hover */
+        }
         
-        /* Style the button text within the .button-submit class */
         
     </style>
 {% endblock meta %}
@@ -106,8 +132,8 @@
                 <input type="password" id="password" name="password" placeholder="Password" class="form-control">
             </div>
             <div class="field">
-                <div class="button-submit"></div>
-                    <input type="submit" value="Login" class="btn login_btn">
+                <div class="button_submit"></div>
+                    <input type="submit" value="Login" class="login_btn">
             </div>
         </form>
         {% if messages %}
@@ -117,8 +143,12 @@
                 {% endfor %}
             </ul>
         {% endif %}
-        <div class="signup-link">
-            Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
+        <div class="field">
+            <div class="button_register">
+                <form method="GET" action="{% url 'main:register' %}">
+                    <p>Didn't have an account yet?</p><input type="submit" value="Register Now" class="register_btn">
+                </form>
+            </div>
         </div>
     </div>
 </div>

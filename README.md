@@ -4,37 +4,195 @@
 ## A. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
 **Selector Universal (*)**
  Digunakan untuk memilih semua elemen di halaman. Sebaiknya digunakan dengan hati-hati karena dapat memengaruhi semua elemen. Waktu yang tepat untuk menggunakannya adalah saat kita ingin memberikan gaya umum untuk semua elemen, misalnya mengatur padding atau margin secara umum.
+
 **Selector Tipe (element)**
  Digunakan untuk memilih semua elemen dengan jenis tertentu, seperti p untuk paragraf atau h1 untuk judul level 1. Waktu yang tepat untuk menggunakannya adalah saat kita ingin memberikan gaya khusus untuk suatu jenis elemen tertentu di seluruh halaman.
+
 **Selector ID (#id)**
  Digunakan untuk memilih elemen dengan atribut id tertentu, yang seharusnya unik dalam satu halaman. Waktu yang tepat untuk menggunakannya adalah saat kita ingin memberikan gaya khusus untuk satu elemen tertentu yang memiliki ID tertentu.
+
 **Selector Kelas (.class)**
  Digunakan untuk memilih elemen-elemen dengan kelas tertentu. Ini memungkinkan Anda memberikan gaya yang sama kepada beberapa elemen. Waktu yang tepat untuk menggunakannya adalah saat kita ingin membagi beberapa elemen menjadi kelompok dengan gaya yang sama.
 
 ## B. Jelaskan HTML5 Tag yang kamu ketahui.
 Berikut HTML5 Tag yang umum yang saya tau :
- <header>: Digunakan untuk mengelompokkan elemen-elemen yang berada di bagian atas halaman, seperti judul, logo, dan menu navigasi.
- <nav>: Menandakan bagian yang berisi tautan navigasi, seperti menu.
- <section>: Mengelompokkan konten yang memiliki tema atau topik yang sama dalam sebuah halaman.
- <article>: Menandakan konten yang independen dan dapat berdiri sendiri, seperti artikel berita.
- <aside>: Digunakan untuk konten yang berhubungan dengan konten utama, misalnya, sidebar dengan tautan terkait.
- <footer>: Digunakan untuk mengelompokkan informasi terkait penulis, hak cipta, atau informasi kontak yang biasanya berada di bagian bawah halaman.
+ `<header>` : Digunakan untuk mengelompokkan elemen-elemen yang berada di bagian atas halaman, seperti judul, logo, dan menu navigasi.
+ `<nav>` : Menandakan bagian yang berisi tautan navigasi, seperti navbar.
+ `<section>` : Mengelompokkan konten yang memiliki tema atau topik yang sama dalam sebuah halaman.
+ `<footer>` : Digunakan untuk mengelompokkan informasi terkait penulis, hak cipta, atau informasi kontak yang biasanya berada di bagian bawah halaman.
  
 ## C. Jelaskan perbedaan antara margin dan padding.
  **Margin**
- Margin adalah ruang di luar batas elemen. Margin memengaruhi jarak antara elemen dengan elemen-elemen lain di sekitarnya. Margin tidak memiliki latar belakang atau warna. Padding: **Padding**
+ Margin adalah ruang di luar batas elemen. Margin memengaruhi jarak antara elemen dengan elemen-elemen lain di sekitarnya. Margin tidak memiliki latar belakang atau warna. 
+ 
+ **Padding**
  Padding adalah ruang di dalam batas elemen, antara isi elemen dan batasnya. Padding memengaruhi jarak antara isi elemen dan batasnya. Kita dapat memberikan latar belakang atau warna pada padding.
 
 ## D. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
  **Tailwind CSS** 
  Tailwind adalah framework CSS yang memberikan banyak kelas utilitas yang dapat digunakan langsung dalam HTML untuk mengatur tampilan elemen. Kelebihan Tailwind adalah fleksibilitas yang tinggi dan memungkinkan kita untuk mengkustomisasi tampilan dengan detail tinggi. Tailwind cocok jika kita ingin membuat desain yang sangat khusus.
+
  **Bootstrap**
  Bootstrap adalah framework CSS yang menyediakan komponen UI yang siap pakai seperti tombol, formulir, dan navigasi. Bootstrap memiliki desain yang telah dirancang dengan baik dan dapat mempercepat pengembangan web. Sebaiknya digunakan jika Anda ingin membuat situs dengan desain yang konsisten dan cepat.
+
 **Kapan Menggunakan Bootstrap atau Tailwind:**
 - Gunakan Bootstrap jika kita ingin membuat *web* dengan desain yang cepat dan konsisten tanpa perlu banyak kustomisasi.
 - Gunakan Tailwind jika kita ingin memiliki tingkat kustomisasi yang tinggi dan memiliki kendali penuh atas tampilan elemen-elemen di halaman web Anda. Tailwind cocok untuk proyek yang membutuhkan desain yang sangat unik.
 
 ## E. Implementasi Checklist *step-by-step*.
+### Kustomisasi desain pada templat HTML yang telah dibuat pada Tugas 4 dengan menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut ###
+Untuk mengkustomisasi website saya, saya menggunakan CSS dan CSS Framework yaitu Bootstrap pada navbar di main page. Saya menggunakan Title dan Inline CSS Style untuk mengkustomisasi tampilan web saya. Dapat dilihat bahwa saya menggunakan blok `<style>` untuk menentukan *style* CSS yang akan digunakan secara lokal
+
+#### 1. Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin. ####
+**Login Page**
+- h1 dan p yang mengatur tulisan `Login` dan tulisan  lain pada page saya set dengan font "Poppins" 
+- Background Image saya kustomisasi dengan gambar yg saya ambil sendiri di internet dan saya letakan di folder media, sehingga pada layout login saya refer ke URL '/media/hogsmeade.jpeg' pada class login dan saya atur properti seperti background-size dan background-position agar sesuai. Tidak lupa saya juga membuat class image dan mengatur efek blur pada background image.
+- Layout halaman login saya atur dengan membuat sebuah div dengan class "login". Kemudian, div dengan class "wrapper" digunakan untuk mengatur *floating card* login yang akan ditampilkan pada tengah layar.
+ 1. `.login` adalah selektor untuk elemen dengan class "login", yang mengatur tampilan elemen tersebut.
+   - `display: flex;`: Menggunakan flexbox untuk mengatur layout.
+   - `flex-direction: column;`: Mengatur arah flexbox menjadi kolom.
+   - `align-items: center;`: Mengatur agar elemen secara horizontal berada di tengah.
+   - `justify-content: center;`: Mengatur agar elemen secara vertikal berada di tengah.
+   - `height: 100vh;`: Mengatur tinggi elemen menjadi 100% dari tinggi viewport.
+   - `background-image: url('/media/hogsmeade.jpeg');`: Menetapkan gambar latar belakang.
+   - `background-size: cover;`: Mengatur agar gambar latar belakang mencakup seluruh elemen.
+   - `background-position: center;`: Mengatur posisi latar belakang ke tengah.
+
+2. `.image`: Ini adalah selektor untuk elemen dengan class "image", yang mengatur tampilan gambar latar belakang.
+   - `filter: blur(2px);`: Menggunakan efek blur pada gambar.
+   - `height: 100%; width: 100%;`: Mengatur gambar agar mengisi seluruh elemen.
+
+3. `.wrapper`: Ini adalah selektor untuk elemen dengan class "wrapper", yang mengatur tampilan card login.
+   - `width: 380px;`: Mengatur lebar elemen.
+   - `background: #fff;`: Memberikan latar belakang putih.
+   - `border-radius: 15px;`: Mengatur sudut elemen menjadi bundar.
+   - `box-shadow: 0px 15px 20px rgba(0,0,0,0.1);`: Menambahkan bayangan elemen.
+   - `text-align: center;`: Mengatur teks menjadi terpusat.
+
+4. `.wrapper h1`: Ini adalah selektor untuk elemen h1 dalam ".wrapper", yang mengatur tampilan judul "Login".
+   - `font-size: 35px;`: Mengatur ukuran font.
+   - `font-weight: 600;`: Mengatur ketebalan font.
+   - `line-height: 100px;`: Mengatur tinggi baris.
+   - `color: #fff;`: Mengatur warna teks.
+   - `background: linear-gradient(-135deg, #c2f4e3, #76e6c1);`: Memberikan latar belakang dengan gradient linear.
+   - `border-radius: 15px 15px 0 0;`: Mengatur sudut latar belakang.
+
+5. `.wrapper form`: Ini adalah selektor untuk elemen form dalam ".wrapper", yang mengatur padding dan margin dalam form.
+
+6. `.signup-link`: Selektor untuk elemen dengan class "signup-link", yang mengatur margin atas dan bawah.
+
+7. `.field` : Ini adalah selektor untuk elemen dengan class "field", yang mengatur sudut elemen menjadi bundar.
+
+- Jika ada pesan informasi (misalnya, pesan kesalahan login), pesan tersebut akan ditampilkan dalam daftar. Saya menggunakan elemen ul dan li untuk tampilan pesan yang lebih baik.
+1. `.wrapper ul li`: Ini adalah selektor untuk elemen daftar dalam ".wrapper", yang mengatur font, ukuran, dan warna teks.
+
+2. `.message-info`: Ini adalah selektor untuk pesan informasi di bawah username dan password. Anda mengatur font, ukuran, dan warna teks.
+
+- Tombol Login dan Register: Anda mengkustomisasi tombol login dengan warna latar belakang #76E6C1, font berwarna #4B1A17, dan efek bayangan. Tombol "Register Now" juga ditambahkan untuk mengarahkan ke halaman registrasi jika pengguna belum memiliki akun, tombol register memiliki efek hover yang mengubah latar belakang saat kursor mengarah ke tombol.
+
+1. `.login_btn` dan `.register_btn`: Ini adalah selektor untuk tombol login dan register. Anda mengatur padding, warna latar belakang, warna teks, dan lain-lain.
+
+2. `.register_btn:hover`: Ini adalah efek yang akan aktif saat kursor mengarah ke tombol register. Anda mengubah warna latar belakang, warna border, dan warna teks saat tombol dihover.
+
+**Register Page**
+- h1 dan p yang mengatur tulisan `Register` dan tulisan lain pada page saya set dengan font "Poppins" 
+- Background Image saya kustomisasi dengan gambar yg saya ambil sendiri di internet dan saya letakan di folder media, sehingga pada layout login saya refer ke URL '/media/hogsmeade.jpeg' pada class login dan saya atur properti seperti background-size dan background-position agar sesuai. Tidak lupa saya juga membuat class image dan mengatur efek blur pada background image.
+- Layout halaman register saya atur dengan membuat sebuah div dengan class "register". Kemudian, div dengan class "wrapper" digunakan untuk mengatur *floating card* register yang akan ditampilkan pada tengah layar.
+1. `.register` adalah selektor untuk elemen dengan class "register", yang mengatur tampilan elemen tersebut.
+   - `display: flex;`: Menggunakan flexbox untuk mengatur layout.
+   - `flex-direction: column;`: Mengatur arah flexbox menjadi kolom.
+   - `align-items: center;`: Mengatur agar elemen secara horizontal berada di tengah.
+   - `justify-content: center;`: Mengatur agar elemen secara vertikal berada di tengah.
+   - `height: 100vh;`: Mengatur tinggi elemen menjadi 100% dari tinggi viewport.
+   - `background-image: url('/media/hogsmeade.jpeg');`: Menetapkan gambar latar belakang.
+   - `background-size: cover;`: Mengatur agar gambar latar belakang mencakup seluruh elemen.
+   - `background-position: center;`: Mengatur posisi latar belakang ke tengah.
+
+2. `.image`: Ini adalah selektor untuk elemen dengan class "image", yang mengatur tampilan gambar latar belakang.
+   - `filter: blur(2px);`: Menggunakan efek blur pada gambar.
+   - `height: 100%; width: 100%;`: Mengatur gambar agar mengisi seluruh elemen.
+
+3. `.wrapper`: Ini adalah selektor untuk elemen dengan class "wrapper", yang mengatur tampilan card login.
+   - `width: 380px;`: Mengatur lebar elemen.
+   - `background: #fff;`: Memberikan latar belakang putih.
+   - `border-radius: 15px;`: Mengatur sudut elemen menjadi bundar.
+   - `box-shadow: 0px 15px 20px rgba(0,0,0,0.1);`: Menambahkan bayangan elemen.
+   - `text-align: center;`: Mengatur teks menjadi terpusat.
+
+4. `.wrapper h1`: Ini adalah selektor untuk elemen h1 dalam ".wrapper", yang mengatur tampilan judul "Login".
+   - `font-size: 35px;`: Mengatur ukuran font.
+   - `font-weight: 600;`: Mengatur ketebalan font.
+   - `line-height: 100px;`: Mengatur tinggi baris.
+   - `color: #fff;`: Mengatur warna teks.
+   - `background: linear-gradient(-135deg, #c2f4e3, #76e6c1);`: Memberikan latar belakang dengan gradient linear.
+   - `border-radius: 15px 15px 0 0;`: Mengatur sudut latar belakang.
+
+5. `.wrapper form`: Ini adalah selektor untuk elemen form dalam ".wrapper", yang mengatur padding dan margin dalam form.
+
+- Tombol Register
+1. `.button_submit` : Ini adalah selektor CSS yang digunakan untuk mengkustomisasi tampilan elemen yang memiliki class "button_submit".
+- display: flex;: Mengatur elemen dengan class "button_submit" agar mengikuti model tata letak "flex", yang berguna untuk mengatur tampilan secara fleksibel.
+- flex-direction: column;: Mengatur arah tata letak elemen menjadi kolom, yang akan membuat elemen-elemen dalam container diatur secara vertikal.
+- align-items: center;: Mengatur elemen-elemen dalam container agar berada di tengah secara horizontal.
+
+2. `daftar_btn` : Ini adalah selector CSS yang digunakan untuk mengkustomisasi tampilan tombol "Daftar" yang memiliki class "daftar_btn".
+- padding: 10px 25px;: Mengatur jarak antara teks dan batasan tombol, baik dari atas/bawah (10px) maupun dari kiri/kanan (25px).
+- background-color: #76E6C1;: Mengatur warna latar belakang tombol menjadi hijau (#76E6C1).
+- border: none;: Menghilangkan border tombol.
+- color: #4B1A17;: Mengatur warna teks tombol menjadi coklat (#4B1A17).
+- text-align: center;: Mengatur teks tombol agar berada di tengah secara horizontal.
+- font-family: 'Poppins', sans-serif;: Mengatur font teks tombol.
+- font-size: 15px;: Mengatur ukuran font menjadi 15px.
+- font-style: normal;: Mengatur gaya font menjadi normal.
+- font-weight: 500;: Mengatur ketebalan font menjadi 500.
+- line-height: normal;: Mengatur tinggi baris font menjadi normal.
+- cursor: pointer;: Mengubah ikon kursor saat mengarah ke tombol menjadi tanda tangan (tanda tangan tindakan klik).
+- margin-top: 20px; margin-bottom: 10px;: Mengatur jarak antara tombol dan elemen-elemen di atas dan di bawahnya.
+- box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);: Menambahkan bayangan (shadow) pada tombol untuk memberikan efek tiga dimensi. Bayangan ini akan muncul saat tombol diberikan interaksi.
+- border-radius: 15px;: Mengatur sudut border tombol menjadi membulat, menciptakan tampilan sudut yang lebih lembut.
+
+Struktur HTML:
+Tombol "Daftar" ini ditempatkan di dalam elemen dengan class "button_submit", yang sebelumnya telah dikustomisasi dalam CSS dengan tampilan flex.
+
+- Pesan informasi seperti keteraangan *requirement*, pesan tersebut akan ditampilkan dalam daftar. Saya menggunakan elemen ul dan li untuk tampilan pesan yang lebih baik.
+1. `.wrapper ul li`: Ini adalah selektor untuk elemen daftar dalam ".wrapper", yang mengatur font, ukuran, dan warna teks.
+
+2. `.message-info`: Ini adalah selektor untuk pesan informasi di bawah username dan password. Anda mengatur font, ukuran, dan warna teks.
+
+**Create Product Page**
+1. `.create` adalah class untuk kontainer utama halaman "create". Ini mengatur konten agar berada di tengah vertikal dan horizontal, mengatur background dengan image, dan lainnya.
+2. `.create-card` adalah class untuk kartu yang berisi form ""Add New Product". Ini mengatur tampilan kartu seperti *background color*, bayangan (shadow), lebar, dan lainnya.
+3. `.create-card h1` digunakan untuk mengkustomisasi judul kartu. Ini mengatur tampilan judul kartu seperti warna teks, latar belakang gradient, dan lainnya.
+4. `.create-card form` digunakan untuk mengatur tampilan formulir dalam kartu, termasuk padding.
+5. `.input-field` digunakan untuk mengkustomisasi tampilan input field dalam formulir seperti padding, border, dan lainnya.
+6. `#id_category` digunakan Khusus mengkustomisasi input field dengan id "id_category", mengurangi ukuran input dengan size: smaller.
+7. `.submit-button` digunakan untuk mengkustomisasi tombol "Create Product", termasuk padding, warna latar belakang, border, warna teks, dan bayangan.
+
+Struktur HTML:
+Kode HTML ini mencakup elemen-elemen yang akan ditampilkan dalam halaman, seperti judul "Add New Product", formulir untuk menambahkan produk, dan tombol "Create Product". Semua elemen ini diberi class atau atribut sesuai dengan pengaturan gaya CSS yang telah ditentukan sebelumnya.
+
+#### 2. Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan approach lain seperti menggunakan Card. ####
+1. Untuk navbar, saya menggunakan template bootstrap dari internet, lalu saya kustomisasi untuk judul page yg akan ditampilkan di Navbar dan mengkustomisasi background dan style lainnya pada navbar
+2. Saya mengatur latar belakang halaman dengan empat gradient linear yang berbeda. Ini menciptakan latar belakang berwarna-warni dengan efek "gradien". Gradien-gradien ini ditempatkan di berbagai sudut.
+3. Saya mengatur styling untuk app-name seperti font, sie, position, margin, line-weight untuk ketebalan, dan lain-lain 
+4. **Implementasi Produk Cards**
+`.product-cards` adalah kelas yang digunakan untuk mengelompokkan dan mengatur kartu produk. 
+- display: flex; digunakan untuk mengatur produk secara horizontal, dan 
+- flex-wrap: wrap; memungkinkan produk untuk melompat ke baris berikutnya jika ruang terbatas. 
+- justify-content: center; mengatur agar produk berada di tengah secara horizontal
+- gap: 40px; memberikan jarak antara setiap kartu produk.
+`.product-card` adalah kelas yang digunakan untuk menggambarkan tampilan individu dari setiap kartu produk.
+- width: calc(23% - 20px); mengatur lebar kartu produk sehingga ada empat kartu dalam satu baris dan ada jarak antara kartu. Ini membuat tampilan produk lebih rapi.
+- border-radius: 20px; memberikan sudut melengkung pada kartu produk.
+- background: radial-gradient(70.26% 70.26% at 50.11% 50.09%, #FFDAEA 9.38%, #A8E7D0 100%); adalah gaya latar belakang yang menciptakan efek gradien radial dengan dua warna yang berbeda pada setiap kartu.
+- margin-top dan margin-bottom digunakan untuk memberikan jarak antara kartu produk.
+- padding: 20px; memberikan jarak antara isi dalam kartu dengan tepi kartu.
+- box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); menambahkan bayangan lembut ke kartu produk.
+- display: flex; flex-direction: column; justify-content: space-between; mengatur isi kartu produk agar ditampilkan secara vertikal dan memiliki ruang di antara elemen-elemennya.
+5. `.image-container` dan `.image` adalah selektor untuk elemen dengan class "image-container" dan "image" yang mengatur gambar yg saya letakkan dfi header page dibawah navbar. Saya bedakan image dan image-cvontainer, karena saya set image saya untuk blur namun tidak ingin seluruh elemen yg ada pada header tersebut (terutama app-name) menjadi blur, sehingga saya buat class untuk image dan styling imagenya saja
+6. h3, h4, dan h5 saya atur font nya, size nya, margin nya, dan lain-lain.
+7. Product-category juga saya styling dan saya letkkan di bagian atas product card
+8. Tombol Product amount, edit, dan delete product juga saya styling dengan CSS agar lebih cantik dan rapi
 
 # Tugas 4: Implementasi Autentikasi, Session, dan Cookies pada Django #
 ## Farah Dhiya Ramadhina/PBP B/2206082934 ##
@@ -68,8 +226,6 @@ Untuk meningkatkan keamanan, penting untuk mengimplementasikan praktik-praktik k
 ## E. Implementasi Checklist *step-by-step*. ##
 ### Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar. ###
 * Mengaktifkan virtual environment dengan menjalankan *prompt* berikut pada terminal direktori aplikasi kita `source env/bin/activate`.
-
-**Fungsi Registrasi**
 * Buka `views.py` yang ada pada `main` dan tambahkan import `redirect`, `UserCreationForm`, dan `messages`
 * Buat fungsi `register` seperti berikut yg menerima parameter `request`
 ```ruby

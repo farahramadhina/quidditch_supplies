@@ -5,22 +5,52 @@
 {% block content %}
 <style>
     body {
-        background-color: #76e6c1;
+        background-image: url('/media/edit_background.jpeg'); 
+    }
+
+    .edit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-image: url('/media/edit_background.jpeg'); 
+        background-size: cover;
+        background-position: center;
     }
 
     .edit-card {
-        width: calc(100% - 20px);
-        background-color: #fffde6; /* Set the card background color */
-        padding: 20px; /* Add padding to the card */
-        border: none; /* Add a border to the card */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        background-color: #fff; /* Set the card background color */
+        border-radius: 15px;
+        box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+        width: 90%; /* Set the card width relative to the viewport */
+        max-width: 500px; 
+        text-align: center;
+        margin-bottom: 40px;
+        margin-top: 40px;
+        }
+
+    .edit-card h1 {
+        font-size: 25px;
+        font-weight: 550;
+        line-height: 100px;
+        color: #fff;
+        background: linear-gradient(-135deg, #c2f4e3, #76e6c1);
+        border-radius: 15px 15px 0 0;
+    }
+
+    .edit-card form {
+        padding: 10px 30px 50px 30px;
     }
 
     .input-field {
-        padding: 20px; /* Add padding to input fields */
-        border: none; /* Add a border to input fields */
+        padding: 20px;
+        border: none;
         border-radius: 10px;
+        width: 100%;
+        margin-bottom: 20px;
     }
+
 
     /* Reduce the size of the category input field */
     #id_category {
@@ -28,30 +58,28 @@
     }
 
     .submit-button {
-        padding: 10px; /* Add padding to the submit button */
-        border: none; /* Add a border to the submit button */
-        gap : 20px;
+        padding: 10px 25px;
+        background-color: #76E6C1;
+        border: none;
+        color: #4B1A17;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
     }
 </style>
 
-<div class="container mt-5 edit-page"> <!-- Add Bootstrap container class and apply custom styles -->
-    <div class="card edit-card"> <!-- Apply custom styles to the card -->
-        <div class="card-body text-center"> <!-- Center-align text within the card -->
-            <h1 class="card-title">Edit Product</h1>
+<div class="edit"> <!-- Add Bootstrap container class and apply custom styles -->
+    <div class="edit-card"> <!-- Apply custom styles to the card -->
+        <h1 class="card-title">Edit Product</h1>
 
-            <form method="POST">
-                {% csrf_token %}
-                <table class="mx-auto"> <!-- Center the table on the card -->
-                    {{ form.as_table }}
-                    <tr>
-                        <td></td>
-                        <td>
-                            <input type="submit" class="btn btn-primary submit-button" value="Edit Product"/>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary submit-button" value="Edit Product"/>
+        </form>
     </div>
 </div>
 {% endblock %}
