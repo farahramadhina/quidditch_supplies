@@ -16,10 +16,10 @@
 
 ## B. Jelaskan HTML5 Tag yang kamu ketahui.
 Berikut HTML5 Tag yang umum yang saya tau :
- `<header>` : Digunakan untuk mengelompokkan elemen-elemen yang berada di bagian atas halaman, seperti judul, logo, dan menu navigasi.
- `<nav>` : Menandakan bagian yang berisi tautan navigasi, seperti navbar.
- `<section>` : Mengelompokkan konten yang memiliki tema atau topik yang sama dalam sebuah halaman.
- `<footer>` : Digunakan untuk mengelompokkan informasi terkait penulis, hak cipta, atau informasi kontak yang biasanya berada di bagian bawah halaman.
+`<header>` : Digunakan untuk mengelompokkan elemen-elemen yang berada di bagian atas halaman, seperti judul, logo, dan menu navigasi.
+`<nav>` : Menandakan bagian yang berisi tautan navigasi, seperti navbar.
+`<section>` : Mengelompokkan konten yang memiliki tema atau topik yang sama dalam sebuah halaman.
+`<footer>` : Digunakan untuk mengelompokkan informasi terkait penulis, hak cipta, atau informasi kontak yang biasanya berada di bagian bawah halaman.
  
 ## C. Jelaskan perbedaan antara margin dan padding.
  **Margin**
