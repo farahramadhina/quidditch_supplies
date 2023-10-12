@@ -119,7 +119,6 @@ def delete_product(request, id):
 def edit_product(request, id):
     # Get product berdasarkan ID
     product = Product.objects.get(pk = id)
-    image_url = product.image.url
 
     # Set product sebagai instance dari form
     form = ProductForm(request.POST or None, instance=product)
@@ -145,7 +144,7 @@ def create_ajax(request):
         price = request.POST.get("price")
         description = request.POST.get("description")
         category = request.POST.get("category")
-        image = request.FILES.get("image")
+        image = request.POST.get("image")
         user = request.user
 
         new_product = Product(name=name, amount = amount, price=price, description=description, category = category, image = image, user=user)

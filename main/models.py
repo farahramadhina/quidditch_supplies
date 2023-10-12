@@ -8,4 +8,4 @@ class Product(models.Model):
     price = models.IntegerField()
     description = models.TextField()
     category = models.TextField()
-    image = models.ImageField(upload_to='product_images/')
+    image = models.TextField()

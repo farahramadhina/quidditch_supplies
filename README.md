@@ -1,3 +1,116 @@
+# Tugas 6: JavaScript dan Asynchronous JavaScript #
+## Farah Dhiya Ramadhina/PBP B/2206082934 ##
+
+## A. Jelaskan perbedaan antara asynchronous programming dengan synchronous programming. ##
+Asynchronous programming dan synchronous programming adalah dua pendekatan yang berbeda dalam menjalankan tugas-tugas dalam sebuah program. Perbedaan utama antara keduanya adalah bagaimana tugas-tugas atau operasi-operasi non-blocking (seperti I/O, jaringan, dan pemrosesan yang memakan waktu) dikelola dan dijalankan.
+
+Berikut adalah perbedaan utama antara asynchronous dan synchronous programming:
+
+1. Eksekusi Berurutan (Synchronous):
+   - Dalam synchronous programming, tugas-tugas dieksekusi berurutan, satu per satu. Tugas berikutnya harus menunggu tugas sebelumnya selesai sebelum dapat dijalankan.
+   - Ini berarti jika ada tugas yang memakan waktu, itu dapat menghentikan eksekusi program secara keseluruhan dan membuat program tampak seperti "terkunci" selama tugas tersebut berjalan.
+
+2. Eksekusi Paralel (Asynchronous):
+   - Dalam asynchronous programming, tugas-tugas dapat dijalankan secara paralel tanpa harus menunggu tugas sebelumnya selesai. Tugas yang memakan waktu dapat "ditinggalkan" sementara program menjalankan tugas-tugas lain.
+   - Ini memungkinkan program untuk tetap responsif dan tidak terpengaruh oleh tugas yang memakan waktu.
+
+3. Blocking vs. Non-blocking:
+   - Dalam synchronous programming, operasi-operasi biasanya blocking, artinya program akan berhenti dan menunggu hasil dari operasi tersebut sebelum melanjutkan eksekusi.
+   - Dalam asynchronous programming, operasi-operasi biasanya non-blocking, yang berarti program dapat melanjutkan eksekusi tanpa harus menunggu operasi selesai. Hasil operasi akan ditangani nanti ketika tersedia.
+
+4. Contoh Penggunaan:
+   - Synchronous programming cocok untuk tugas-tugas yang bersifat sekuensial dan tidak memakan waktu, seperti perhitungan matematis sederhana.
+   - Asynchronous programming lebih sesuai untuk tugas-tugas yang memakan waktu, seperti permintaan HTTP ke server, operasi-disk, atau interaksi jaringan, di mana responsifitas dan kinerja yang baik penting.
+
+5. Callbacks vs. Await/Async:
+   - Dalam asynchronous programming, umumnya digunakan pendekatan seperti callback functions (misalnya, dalam JavaScript) atau await/async (seperti dalam Python dengan kata kunci `async` dan `await`) untuk mengelola operasi asynchronous.
+
+Kesimpulannya, asynchronous programming memungkinkan program untuk tetap responsif dan menjalankan tugas-tugas secara paralel, sementara synchronous programming menjalankan tugas-tugas secara berurutan. Pilihan antara keduanya tergantung pada kebutuhan aplikasi dan jenis tugas yang dijalankan dalam program tersebut.
+
+## B. Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini. ##
+Paradigma event-driven programming adalah paradigma pemrograman yang berfokus pada ketersediaan dan pengelolaan peristiwa (events) sebagai pusat kendali dalam sebuah program. Dalam paradigma ini, program secara aktif merespons peristiwa atau kejadian yang terjadi, seperti interaksi pengguna (mouse clicks, keyboard input), permintaan jaringan (HTTP requests), dan peristiwa lainnya. Program akan merespons peristiwa-peristiwa ini dengan menjalankan tindakan atau fungsi tertentu yang telah ditentukan sebelumnya. Dengan kata lain, program "mendengarkan" peristiwa-peristiwa dan merespons mereka saat mereka terjadi.
+
+Contoh penerapan paradigma event-driven programming dalam JavaScript dan AJAX adalah:
+
+1. **Handling Mouse Click Event:**
+   - Ketika seorang pengguna mengklik sebuah elemen HTML di halaman web, peristiwa mouse click terjadi.
+   - Kita dapat menggunakan JavaScript untuk menangani peristiwa ini dengan menambahkan event listener ke elemen HTML yang bersangkutan. Sebagai contoh:
+   ```RUBY
+   const myButton = document.getElementById("myButton");
+   
+   myButton.addEventListener("click", function() {
+       // Kode yang akan dijalankan saat tombol diklik
+       alert("Tombol telah diklik!");
+   });
+   ```
+   Dalam contoh di atas, ketika elemen HTML dengan ID "myButton" diklik, fungsi yang telah ditentukan akan dijalankan.
+
+2. **AJAX Request and Response Handling:**
+   - Dalam penggunaan AJAX (Asynchronous JavaScript and XML), program umumnya akan mengirim permintaan ke server (misalnya, permintaan HTTP GET atau POST) secara asynchronous.
+   - Program akan merespons peristiwa yang terkait dengan permintaan AJAX, seperti ketika permintaan selesai atau ketika respons dari server diterima. Ini memungkinkan program untuk menjalankan tindakan berdasarkan hasil permintaan ke server.
+   - Berikut adalah contoh penggunaan AJAX dengan paradigma event-driven:
+   ```RUBY
+   const xhr = new XMLHttpRequest();
+   
+   xhr.addEventListener("load", function() {
+       if (xhr.status === 200) {
+           // Kode yang akan dijalankan saat permintaan selesai dan respons diterima
+           const response = xhr.responseText;
+           console.log("Respons dari server: " + response);
+       } else {
+           console.error("Gagal melakukan permintaan: " + xhr.status);
+       }
+   });
+   
+   xhr.open("GET", "https://example.com/api/data");
+   xhr.send();
+   ```
+   Dalam contoh ini, program mendengarkan peristiwa "load" yang terjadi ketika permintaan selesai. Hasil respons dari server kemudian ditangani dengan tindakan yang sesuai.
+
+Paradigma event-driven programming sangat umum dalam pengembangan aplikasi web dengan JavaScript karena banyak interaksi pengguna dan permintaan jaringan yang memicu peristiwa. Dengan mengggunakan event-driven programming, program dapat merespons secara efisien terhadap perubahan dan interaksi yang dinamis dalam lingkungan web.
+
+## C. Jelaskan penerapan asynchronous programming pada AJAX. ##
+Penerapan asynchronous programming pada AJAX (Asynchronous JavaScript and XML) adalah inti dari cara AJAX berfungsi. AJAX memungkinkan penanganan permintaan (requests) dan respons (responses) ke server dilakukan secara asynchronous, yang berarti kita dapat melakukan tugas lain tanpa harus menunggu respons dari server. Berikut adalah beberapa poin penting dalam penerapan asynchronous programming pada AJAX:
+
+1. **Asynchronous Request Handling:**
+   - Dalam asynchronous programming dengan AJAX, ketika Anda mengirim permintaan (request) ke server, JavaScript tidak akan menghentikan eksekusi program. Sebaliknya, kode Anda akan terus berjalan, dan JavaScript akan menangani permintaan secara latar belakang.
+   - Ini sangat berguna dalam menghindari pembekuan antarmuka pengguna (UI freezing) saat menunggu respons dari server. Pengguna dapat tetap berinteraksi dengan halaman web tanpa gangguan.
+
+2. **Event Handling:**
+   - Untuk menangani respons dari server, Anda menggunakan event listeners yang berkaitan dengan peristiwa-peristiwa tertentu. Biasanya, Anda akan menggunakan event "load" untuk menentukan tindakan yang akan diambil ketika respons berhasil diterima.
+   - Anda juga dapat menangani peristiwa-peristiwa lain, seperti "error" untuk menangani kesalahan dalam permintaan.
+
+Penerapan asynchronous programming pada AJAX memungkinkan pengembang web untuk membuat aplikasi yang responsif dan efisien. Ini memungkinkan pengembangan aplikasi web yang dinamis tanpa harus menunggu respons dari server, yang sangat penting dalam pengembangan modern berbasis web.
+
+## D. Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan. ##
+Penentuan apakah Fetch API atau jQuery lebih baik digunakan dalam pengembangan aplikasi web dengan AJAX tergantung pada kebutuhan dan preferensi proyek Anda. Saya akan memberikan perbandingan antara keduanya serta beberapa pertimbangan yang dapat membantu Anda memutuskan teknologi mana yang lebih sesuai.
+
+**Fetch API:**
+1. **Native:** Fetch API adalah bagian dari standar JavaScript modern (ECMAScript) dan telah didukung oleh hampir semua browser terbaru. Ini berarti Anda tidak perlu lagi mengunduh atau memasang library eksternal untuk menggunakannya.
+
+2. **Promise-Based:** Fetch API menggunakan model promise, yang membuat kode asinkron menjadi lebih mudah dibaca dan dikelola. Anda dapat menggunakan `then()` dan `catch()` untuk menangani respons dan kesalahan.
+
+3. **Lebih Ringan:** Fetch API lebih ringan dibandingkan jQuery. Jika Anda hanya memerlukan AJAX tanpa kebutuhan fungsi-fungsi tambahan yang disediakan oleh jQuery, Fetch API akan mengurangi overhead.
+
+4. **Modern:** Karena Fetch API adalah bagian dari standar JavaScript modern, pengembang sering merasa lebih nyaman dengan teknologi bawaan browser.
+
+**jQuery:**
+1. **Kompatibilitas: **jQuery telah lama digunakan dalam pengembangan web dan menyediakan lapisan abstraksi yang memungkinkan Anda menangani perbedaan kompatibilitas antar browser dengan lebih mudah. Ini sangat berguna jika Anda perlu mendukung browser lama yang mungkin tidak mendukung Fetch API.
+
+2. **Lebih Mudah:** jQuery memangkas banyak boilerplate code yang diperlukan dalam Fetch API. Anda dapat menulis kode AJAX dengan lebih sedikit baris kode.
+
+3. **Plugin Ekstensif:** jQuery memiliki banyak plugin yang dapat memperluas kemampuan Anda dalam hal animasi, DOM manipulation, dan tugas-tugas umum dalam pengembangan web.
+
+Pilihan terbaik tergantung pada konteks proyek Anda:
+- **Fetch API** adalah pilihan yang baik jika Anda ingin fokus pada pengembangan modern, tidak perlu kekhawatiran tentang kompatibilitas browser kuno, dan menghindari ketergantungan pada library eksternal. Ini adalah pilihan yang baik untuk proyek-proyek baru di mana Anda dapat mengontrol lingkungan target.
+
+- **jQuery** berguna jika Anda perlu mendukung browser lama, ingin menulis kode AJAX dengan lebih cepat tanpa boilerplate code, atau jika Anda bergantung pada plugin-plugin jQuery yang ada.
+
+Jadi, tidak ada yang bisa dikatakan lebih baik secara mutlak. Pilihan terbaik tergantung pada kebutuhan proyek Anda, tingkat kenyamanan Anda dengan teknologi tersebut, dan apakah Anda lebih suka pendekatan modern dengan Fetch API atau lebih konvensional dengan jQuery.
+
+## E. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial). ##
+
+
 # Tugas 5: Desain Web menggunakan HTML, CSS dan Framework CSS #
 ## Farah Dhiya Ramadhina/PBP B/2206082934 ##
 

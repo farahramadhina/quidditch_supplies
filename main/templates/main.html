@@ -157,16 +157,18 @@
     }
 
     /* Style for product cards */
-    .product-cards {
+    .cards-container {
         display: flex;
         flex-wrap: wrap; /* Enable wrapping */
         justify-content: center;
+        align-items: center;
         gap: 40px; /* Space between cards */
     }
 
     /* Style for product card */
     .product-card {
         width: calc(23% - 20px); /* Adjust card width to fit three cards in a row */
+        height: 1000px; 
         border-radius: 20px;
         background: radial-gradient(70.26% 70.26% at 50.11% 50.09%, #FFDAEA 9.38%, #A8E7D0 100%);
         margin-top: 30px;
@@ -178,10 +180,15 @@
         justify-content: space-between;
     }
 
+    .product-card img {
+        max-width: 100%;
+        height: 40%;
+    }
+
     /* Style for product images */
     .product-image {
         max-width: 100%;
-        height: auto;
+        height: 40%;
     }
 
     /* Style for product details */
@@ -300,7 +307,7 @@
 </div>
 
 
-<div class="table-container" id="product-table">
+<div class="cards-container" id="product-table">
     
 </div>
 
@@ -312,7 +319,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form id="form" enctype="multipart/form-data" onsubmit="return false;">
+              <form id="form" onsubmit="return false;">
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="name" class="col-form-label">Name:</label>
@@ -336,7 +343,7 @@
                     </div>
                     <div class="mb-3">
                       <label for="image" class="col-form-label">Image:</label>
-                      <input type="file" class="form-control" id="image" name="image">
+                      <input type="text" class="form-control" id="image" name="image">
                   </div>
                 </form>
             </div>
@@ -359,12 +366,11 @@
       let htmlString = ``
       products.forEach((item) => {
           htmlString += 
-          `<div class="product-cards">
-            <div class="product-card">
+          `<div class="product-card">
                 <div class="product-category">
                     <span>${item.fields.category}</span>
                 </div>
-                <img src="${item.fields.image.url}" alt="${item.fields.name}">
+                <img src="${item.fields.image}" alt="${item.fields.name}">
                 <div class="product-details">
                     <h3>${item.fields.name}</h3>
                     <p>${item.fields.description}</p>
@@ -380,7 +386,7 @@
                     </a>
                 </div>
                 <div class="product-buttons">
-                    <a href="/edit_product/${item.pk}">
+                    <a href="/edit-product/${item.pk}">
                         <button>Edit</button>
                     </a>
                     <a href="/delete_product/${item.pk}">
@@ -388,8 +394,7 @@
                     </a>
                     <button class="delete-product-button" onClick="deleteProduct(${item.pk})">Delete by AJAX</button>
                 </div>
-            </div>
-        </div>`
+            </div>`
       })
       
       document.getElementById("product-table").innerHTML = htmlString
