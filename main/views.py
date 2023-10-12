@@ -15,6 +15,8 @@ import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import Product
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
 
 @login_required(login_url='/login')
@@ -96,31 +98,21 @@ def logout_user(request):
     return response
 
 def reduce_amount(request, id):
-    product = Product.objects.get(pk=id)
-
-    # ngecek apakah produknya milik usernya 
-    if product.user == request.user:
-        if product.amount > 0:  
-            product.amount -= 1
-            product.save()
-
+    product = Product.objects.filter(id=id).first()
+    product.amount -= 1
+    product.save()
     return redirect('main:show_main')
 
 def increase_amount(request, id):
-    product = Product.objects.get(pk=id)
-
-    if product.user == request.user:
-        product.amount += 1
-        product.save()
+    product = Product.objects.filter(id=id).first()
+    product.amount += 1
+    product.save()
 
     return redirect('main:show_main')
 
 def delete_product(request, id):
     product = Product.objects.get(pk=id)
-
-    # ngecek apakah produknya milik usernya 
-    if product.user == request.user:
-        product.delete()
+    product.delete()
 
     return redirect('main:show_main')
 
@@ -139,3 +131,34 @@ def edit_product(request, id):
 
     context = {'form': form}
     return render(request, "edit_product.html", context)
+
+def get_product_json(request):
+    product_item = Product.objects.filter(user = request.user)
+    return HttpResponse(serializers.serialize('json', product_item))
+
+
+@csrf_exempt
+def create_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        amount = request.POST.get("amount")
+        price = request.POST.get("price")
+        description = request.POST.get("description")
+        category = request.POST.get("category")
+        image = request.FILES.get("image")
+        user = request.user
+
+        new_product = Product(name=name, amount = amount, price=price, description=description, category = category, image = image, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound() 
+
+def delete_product_ajax(request, product_id):
+    if request.method == 'DELETE':
+        product = Product.objects.get(pk=product_id)
+        if product.user == request.user:
+            product.delete()
+            return JsonResponse({}, status=204)  # Berhasil menghapus
+    return HttpResponseNotFound()

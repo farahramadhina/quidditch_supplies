@@ -300,42 +300,158 @@
 </div>
 
 
-<div class="table-container">
-    <div class="product-cards">
-        {% for product in products %}
+<div class="table-container" id="product-table">
+    
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="form" enctype="multipart/form-data" onsubmit="return false;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="col-form-label">Amount:</label>
+                        <input type="text" class="form-control" id="amount" name="amount"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="col-form-label">Price:</label>
+                        <input type="number" class="form-control" id="price" name="price"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="col-form-label">Category:</label>
+                        <input type="text" class="form-control" id="category" name="category"></input>
+                    </div>
+                    <div class="mb-3">
+                      <label for="image" class="col-form-label">Image:</label>
+                      <input type="file" class="form-control" id="image" name="image">
+                  </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function getProducts() {
+      return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+  }
+
+    async function refreshProducts() {
+      document.getElementById("product-table").innerHTML = "abc"
+      const products = await getProducts()
+      let htmlString = ``
+      products.forEach((item) => {
+          htmlString += 
+          `<div class="product-cards">
             <div class="product-card">
                 <div class="product-category">
-                    <span>{{ product.category }}</span>
+                    <span>${item.fields.category}</span>
                 </div>
-                <img src="{{ product.image.url }}" alt="{{ product.name }}"> 
+                <img src="${item.fields.image.url}" alt="${item.fields.name}">
                 <div class="product-details">
-                    <h3>{{ product.name }}</h3>
-                    <p>{{ product.description }}</p>
-                    <p>Price: {{ product.price }}</p>
+                    <h3>${item.fields.name}</h3>
+                    <p>${item.fields.description}</p>
+                    <p> Price : ${item.fields.price}</p>
                 </div>
                 <div class="product-amount">
-                    <a href="{% url 'main:reduce_amount' product.id %}">
+                    <a href="/reduce_amount/${item.pk}">
                         <button>-</button>
                     </a>
-                    <span>{{ product.amount }}</span>
-                    <a href="{% url 'main:increase_amount' product.id %}">
+                    <span>${item.fields.amount}</span>
+                    <a href="/increase_amount/${item.pk}">
                         <button>+</button>
                     </a>
                 </div>
                 <div class="product-buttons">
-                    <a href="{% url 'main:edit_product' product.pk %}">
+                    <a href="/edit_product/${item.pk}">
                         <button>Edit</button>
                     </a>
-                    <a href="{% url 'main:delete_product' product.id %}">
+                    <a href="/delete_product/${item.pk}">
                         <button>Delete</button>
                     </a>
+                    <button class="delete-product-button" onClick="deleteProduct(${item.pk})">Delete by AJAX</button>
                 </div>
             </div>
-        {% endfor %}
-    </div>
-</div>
-<br />
+        </div>`
+      })
+      
+      document.getElementById("product-table").innerHTML = htmlString
+  }
 
+    refreshProducts()
+
+    function addProduct() {
+        const formData = new FormData(document.querySelector('#form'));
+
+        fetch("{% url 'main:create_ajax' %}", {
+            method: "POST",
+            body: formData,
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        // document.getElementById("button_add").onclick = addProduct
+
+        return false
+    }
+    document.getElementById("button_add").onclick = addProduct
+
+     // Fungsi untuk mendapatkan token CSRF dari cookie
+     function getCookie(name) {
+        const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+        return cookieValue ? cookieValue.pop() : '';
+    }
+
+    async function deleteProduct(productId) {
+        try {
+            const csrfToken = getCookie('csrftoken');
+            const response = await fetch(`/delete_product_ajax/${productId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                },
+            });
+
+            if (response.status === 204) {
+                // Penghapusan berhasil, perbarui tampilan produk
+                refreshProducts();
+            } else {
+                alert('Gagal menghapus produk.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    // Tambahkan event listener untuk tombol "Delete"
+    const deleteButtons = document.querySelectorAll('.delete-product-button');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-product-id');
+
+            // Konfirmasi penghapusan
+            if (confirm('Apakah Anda yakin ingin menghapus produk ini?')) {
+                deleteProduct(productId);
+            }
+        });
+    });
+</script>
 
 <div class="button-container">
     <a href="{% url 'main:create_product' %}">
@@ -343,6 +459,8 @@
             Add New Product
         </button>
     </a>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
 
     <span class="last-login">Sesi terakhir login: {{ last_login }}</span>
 
