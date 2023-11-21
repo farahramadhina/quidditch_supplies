@@ -49,7 +49,7 @@ Contoh penerapan paradigma event-driven programming dalam JavaScript dan AJAX ad
         });
     });
    ```
-   Dalam contoh di atas, ketika elemen HTML dengan ID "dleteButtons" diklik, fungsi yang telah ditentukan akan dijalankan.
+   Dalam contoh di atas, ketika elemen HTML dengan ID "deleteButtons" diklik, fungsi yang telah ditentukan akan dijalankan.
 
 2. **AJAX Request and Response Handling:**
    - Dalam penggunaan AJAX (Asynchronous JavaScript and XML), program umumnya akan mengirim permintaan ke server (misalnya, permintaan HTTP GET atau POST) secara asynchronous.
