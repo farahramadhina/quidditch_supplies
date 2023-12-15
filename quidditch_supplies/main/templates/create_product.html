@@ -1,0 +1,78 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<style>
+    .create {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-image: url('/media/add_background.jpeg'); 
+        background-size: cover;
+        background-position: center;
+    }
+
+    .create-card {
+        background-color: #fff; /* Set the card background color */
+        border-radius: 15px;
+        box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+        width: 90%; /* Set the card width relative to the viewport */
+        max-width: 500px; 
+        text-align: center;
+        margin-bottom: 40px;
+        margin-top: 40px;
+        }
+
+    .create-card h1 {
+        font-size: 25px;
+        font-weight: 550;
+        line-height: 100px;
+        color: #fff;
+        background: linear-gradient(-135deg, #c2f4e3, #76e6c1);
+        border-radius: 15px 15px 0 0;
+    }
+
+    .create-card form {
+        padding: 10px 30px 50px 30px;
+    }
+
+    .input-field {
+        padding: 20px;
+        border: none;
+        border-radius: 10px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+
+    /* Reduce the size of the category input field */
+    #id_category {
+        size : smaller;/* Adjust the width as needed */
+    }
+
+    .submit-button {
+        padding: 10px 25px;
+        background-color: #76E6C1;
+        border: none;
+        color: #4B1A17;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+    }
+</style>
+<div class="create"> <!-- Add Bootstrap container class and apply custom styles -->
+    <div class="create-card"> <!-- Apply custom styles to the card -->
+        <h1 class="card-title">Add New Product</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary submit-button" value="Create Product"/>
+        </form>
+    </div>
+</div>
+{% endblock %}

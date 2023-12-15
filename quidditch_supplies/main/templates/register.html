@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Register</title>
+    <style>
+        /* Page-wide styles */
+        h1, p {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Centering the card */
+        .register {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url('/media/hogsmeade.jpeg'); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        .image {
+            filter: blur(2px);
+            height: 100%;
+            width: 100%;
+        }
+        /* Floating register card styles */
+        .wrapper {
+            width: 380px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .wrapper h1 {
+            font-size: 35px;
+            font-weight: 600;
+            line-height: 100px;
+            color: #fff;
+            background: linear-gradient(-135deg, #c2f4e3, #76e6c1);
+            border-radius: 15px 15px 0 0;
+        }
+        .wrapper form {
+            padding: 10px 30px 50px 30px;
+        }
+
+        .wrapper ul li{
+            font-family: 'Poppins', sans-serif;
+            font-size : smaller;
+            color: #c02c3e;
+        }
+
+        /* Apply the same style to the message info below Username and Password Confirmation */
+        .message-info {
+            font-family: 'Poppins', sans-serif;
+            font-size: smaller;
+            color: #c02c3e;
+        }
+
+        .field {
+            border-radius: 20px;
+        }
+
+        /* Adjust the positioning of the "Daftar" button */
+        .button_submit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .daftar_btn {
+            padding: 10px 25px;
+            background-color: #76E6C1; /* Warna latar belakang */
+            border: none;
+            color: #4B1A17;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            cursor: pointer;
+            margin-top : 20px;
+            margin-button : 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+            border-radius: 15px; 
+        }
+        
+    </style>
+{% endblock meta %}
+
+{% block content %}  
+
+<div class="register"> <!-- Use the "register" class for centering -->
+    <div class="wrapper"> <!-- Use the "wrapper" class for the floating card -->
+        <h1>Register</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+                <tr>
+                    <td></td>
+                    <td class="button_submit"> <!-- Create a container for the button -->
+                        <input type="submit" value="Daftar" class="daftar_btn">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li class="message-info">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock content %}

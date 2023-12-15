@@ -1,0 +1,478 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav class="navbar navbar-expand-sm navbar-light" id="neubar">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img src="media/honeydukes_logo.png" height="60" /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto ">
+          <li class="nav-item">
+            <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="#">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="#">Location</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              About Us
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">Contact us</a></li>
+              <li><a class="dropdown-item" href="#">History</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<style>
+    body {
+        background: linear-gradient(to bottom right, #EE73BD 0%, rgba(211, 127, 178, 0.00) 50%) bottom right / 50% 50% no-repeat, linear-gradient(to bottom left, #EE73BD 0%, rgba(211, 127, 178, 0.00) 50%) bottom left / 50% 50% no-repeat, linear-gradient(to top left, #EE73BD 0%, rgba(211, 127, 178, 0.00) 50%) top left / 50% 50% no-repeat, linear-gradient(to top right, #EE73BD 0%, rgba(211, 127, 178, 0.00) 50%) top right / 50% 50% no-repeat;
+    }
+
+    /* Define the Poppins font */
+    @font-face {
+        font-family: 'Poppins';
+        src: url('quidditch_supplies/poppins-medium-webfont.woff2') format('woff2'); /* Update the path to your font file */
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    .app-name {
+        color: #fffde6;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* centers the element */
+        text-align: center;
+        text-shadow: 0px 3.999999761581421px 3.999999761581421px rgba(0, 0, 0, 0.25);
+        font-family: Poppins;
+        font-size: 80px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+	#neubar {
+      background: #76e6c1;
+      box-shadow: 4px 6px 12px rgba(0,0,0,0.4)
+    }
+    
+    .nav-item .active {
+      border-radius: 6px;
+      background: linear-gradient(145deg, #f5d7b2, #6bd9b5);
+      box-shadow:  4px 4px 8px #ddc1a0,
+                   -2px -2px 8px #f7e5cc;
+    }
+    #neubar .dropdown-menu a:hover {
+      color: #000000
+    }
+    #neubar .nav-item {
+      margin : auto 4px;
+    }
+    #neubar a {
+    
+      padding-left:12px;
+      padding-right:12px;
+    }
+    #neubar .dropdown-menu {
+      background : #80dab1
+    }
+    a.navbar-brand {
+      color: #000
+    }
+
+
+    /* Style for the image and its container */
+    .image-container {
+        background: url(media/product_images/store_header.jpg), lightgray -9.14px -153.971px / 100% 192.352% no-repeat;
+        height: 40vh;
+        width: 100%;
+        top: 0;
+        left: 0;
+        position: relative;
+        z-index: -1; /* Send the image behind the content */
+    }
+
+
+    /* Adjust the position and size of the image within its container */
+    .image {
+        filter: blur(3px);
+        height: 100%;
+        width: 100%;
+    }
+
+    
+    
+    h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        text-align: center;
+        font-family: Poppins;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+
+    h4 {
+        margin-top: 30px;
+        margin-bottom: 10px;
+        text-align: center;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 450;
+        color: #7c173c;
+    }
+
+    h5 {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 450;
+        color: #7c173c;
+    }
+
+    /* Center-align app name, name, and class */
+    .text-center {
+        text-align: center;
+    }
+
+    /* Style for "Sesi terakhir login" */
+    .last-login {
+        font-weight: normal;
+        font-size: smaller;
+        display: block;
+        text-align: center;
+    }
+
+    /* Style for product cards */
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap; /* Enable wrapping */
+        justify-content: center;
+        align-items: center;
+        gap: 40px; /* Space between cards */
+    }
+
+    /* Style for product card */
+    .product-card {
+        width: calc(23% - 20px); /* Adjust card width to fit three cards in a row */
+        height: 1000px; 
+        border-radius: 20px;
+        background: radial-gradient(70.26% 70.26% at 50.11% 50.09%, #FFDAEA 9.38%, #A8E7D0 100%);
+        margin-top: 30px;
+        margin-bottom: 20px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add box shadow */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .product-card img {
+        max-width: 100%;
+        height: 40%;
+    }
+
+    /* Style for product images */
+    .product-image {
+        max-width: 100%;
+        height: 40%;
+    }
+
+    /* Style for product details */
+    .product-details {
+        text-align: left;
+    }
+
+    /* Style for product buttons */
+    .product-buttons {
+        display: flex;
+        justify-content: center; /* Align buttons horizontally */
+        margin-top: 10px; /* Add margin to separate buttons */
+    }
+
+    /* Style for "Edit" and "Delete" buttons */
+    .product-buttons button {
+        padding: 5px 10px; /* Adjust button padding */
+        border: none;
+        background-color: #ffff; /* Button background color */
+        color: #000; /* Button text color */
+        font-size: 16px; /* Button font size */
+        cursor: pointer;
+        border-radius: 5px; /* Rounded corners */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Box shadow */
+        margin: 0 5px; 
+    }
+
+    /* Style for button container */
+    .button-container {
+        text-align: center;
+        margin-top: 20px; /* Add margin to separate buttons from cards */
+    }
+
+    /* Style for buttons */
+    .button-container button {
+        padding: 10px 20px; /* Increase button padding */
+        background-color: #f5f5f5; /* Change button background color */
+        color: #000; /* Change button text color */
+        font-size: 16px; /* Increase button font size */
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.0.1); /* Add box shadow */
+        border-radius: 5px; /* Rounded corners */
+    }
+
+    /* Style for "Add New Product" and "Logout" buttons */
+    .add-product-button, .logout-button {
+        padding: 10px 25px; /* Sesuaikan padding sesuai kebutuhan */
+        background-color: #76E6C1; /* Warna latar belakang */
+        border: none;
+        color: #4B1A17;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        cursor: pointer;
+        margin-top : 20px;
+        margin-button : 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+        border-radius: 15px; /* Tambahkan border-radius jika diperlukan */
+    }
+
+    .product-category {
+        background: #f7b2d8;
+        width: 100%; /* Set width to 100% to span the entire card */
+        height: 50px; /* Adjust the height as needed */
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #000;
+        font-size: 16px;
+        font-weight: 550;
+        margin: 0; /* Remove margin */
+        padding: 0; /* Remove padding */
+        margin-bottom: 10px;
+    }
+
+    /* Style for product amount box */
+    .product-amount {
+        background-color: #FFDAEA;
+        color: #000;
+        width: 75px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        padding: 5px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto 10px auto;
+    }
+
+    .product-amount button {
+        background: none;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        padding: 0 5px; /* Add padding to the buttons */
+    }
+</style>
+
+<div class="image-container">
+    <img class="image" src="media/store_header.jpeg" >
+    <h1 class="app-name" style="text-align : center">{{ app_name }}</h1>
+
+</div>
+
+<div class="text-center">
+  <h4>Welcome, {{ name }} from class {{ class }}</h4>
+  <h5>Browse from our various products. We have {{ products|length }} sweets available to choose from</h5>
+</div>
+
+
+<div class="cards-container" id="product-table">
+    
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="form" onsubmit="return false;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="col-form-label">Amount:</label>
+                        <input type="text" class="form-control" id="amount" name="amount"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="col-form-label">Price:</label>
+                        <input type="number" class="form-control" id="price" name="price"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="col-form-label">Category:</label>
+                        <input type="text" class="form-control" id="category" name="category"></input>
+                    </div>
+                    <div class="mb-3">
+                      <label for="image" class="col-form-label">Image:</label>
+                      <input type="text" class="form-control" id="image" name="image">
+                  </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function getProducts() {
+      return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+  }
+
+    async function refreshProducts() {
+      document.getElementById("product-table").innerHTML = "abc"
+      const products = await getProducts()
+      let htmlString = ``
+      products.forEach((item) => {
+          htmlString += 
+          `<div class="product-card">
+                <div class="product-category">
+                    <span>${item.fields.category}</span>
+                </div>
+                <img src="${item.fields.image}" alt="${item.fields.name}">
+                <div class="product-details">
+                    <h3>${item.fields.name}</h3>
+                    <p>${item.fields.description}</p>
+                    <p> Price : ${item.fields.price}</p>
+                </div>
+                <div class="product-amount">
+                    <a href="/reduce_amount/${item.pk}">
+                        <button>-</button>
+                    </a>
+                    <span>${item.fields.amount}</span>
+                    <a href="/increase_amount/${item.pk}">
+                        <button>+</button>
+                    </a>
+                </div>
+                <div class="product-buttons">
+                    <a href="/edit-product/${item.pk}">
+                        <button>Edit</button>
+                    </a>
+                    <a href="/delete_product/${item.pk}">
+                        <button>Delete</button>
+                    </a>
+                    <button class="delete-product-button" onClick="deleteProduct(${item.pk})">Delete by AJAX</button>
+                </div>
+            </div>`
+      })
+      
+      document.getElementById("product-table").innerHTML = htmlString
+  }
+
+    refreshProducts()
+
+    function addProduct() {
+        const formData = new FormData(document.querySelector('#form'));
+
+        fetch("{% url 'main:create_ajax' %}", {
+            method: "POST",
+            body: formData,
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        // document.getElementById("button_add").onclick = addProduct
+
+        return false
+    }
+    document.getElementById("button_add").onclick = addProduct
+
+     // Fungsi untuk mendapatkan token CSRF dari cookie
+     function getCookie(name) {
+        const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+        return cookieValue ? cookieValue.pop() : '';
+    }
+
+    async function deleteProduct(productId) {
+        try {
+            const csrfToken = getCookie('csrftoken');
+            const response = await fetch(`/delete_product_ajax/${productId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                },
+            });
+
+            if (response.status === 204) {
+                // Penghapusan berhasil, perbarui tampilan produk
+                refreshProducts();
+            } else {
+                alert('Gagal menghapus produk.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    // Tambahkan event listener untuk tombol "Delete"
+    const deleteButtons = document.querySelectorAll('.delete-product-button');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-product-id');
+
+            // Konfirmasi penghapusan
+            if (confirm('Apakah Anda yakin ingin menghapus produk ini?')) {
+                deleteProduct(productId);
+            }
+        });
+    });
+</script>
+
+<div class="button-container">
+    <a href="{% url 'main:create_product' %}">
+        <button>
+            Add New Product
+        </button>
+    </a>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
+
+    <span class="last-login">Sesi terakhir login: {{ last_login }}</span>
+
+    <a href="{% url 'main:logout' %}">
+        <button>
+            Logout
+        </button>
+    </a>
+</div>
+{% endblock content %}
